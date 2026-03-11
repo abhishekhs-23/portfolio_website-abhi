@@ -3,23 +3,49 @@ import { motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
 import { Send, Mail, MapPin, Phone } from "lucide-react";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+
+// Replace these with your EmailJS credentials
+// Get them from: https://www.emailjs.com/
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast.error("Please fill in all fields.");
       return;
     }
+
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          to_name: "Abhishek",
+          to_email: "abhishekhs0217@gmail.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
       toast.success("Message sent! I'll get back to you soon.");
       setForm({ name: "", email: "", message: "" });
-    }, 1200);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -76,12 +102,12 @@ const ContactSection = () => {
             className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-sm resize-none"
           />
           <button
-            type="submit"
-            disabled={sending}
-            className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-primary flex items-center justify-center gap-2 disabled:opacity-50"
-          >
-            {sending ? "Sending..." : <>Send Message <Send size={16} /></>}
-          </button>
+  type="submit"
+  disabled={sending}
+  className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-primary flex items-center justify-center gap-2 disabled:opacity-50"
+>
+  {sending ? "Sending..." : <>Send Message <Send size={16} /></>}
+</button>
         </motion.form>
       </div>
     </SectionWrapper>
