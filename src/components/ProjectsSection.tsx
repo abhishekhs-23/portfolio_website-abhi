@@ -7,56 +7,47 @@ const filters = ["All", "AI / ML", "Web", "Computer Vision"];
 
 const projects = [
   {
-    title: "AI Teaching Assistant",
-    desc: "An intelligent tutoring system powered by NLP that answers student questions, generates quizzes, and provides personalized learning paths.",
-    tags: ["Python", "Transformers", "FastAPI", "React"],
+    title: "AI-Powered Interactive Teaching Assistant",
+    desc: "Developed an AI-based classroom assistant with real-time speech-to-text captions and multilingual translation. Implemented automatic lecture note generation and context-aware doubt solving using Retrieval-Augmented Generation (RAG).",
+    tags: ["Python", "NLP", "RAG", "Speech-to-Text"],
     category: "AI / ML",
     github: "#",
     demo: "#",
     featured: true,
   },
   {
-    title: "Face Recognition Security",
-    desc: "Real-time face detection and recognition system for secure access control using deep learning and OpenCV.",
-    tags: ["Python", "OpenCV", "TensorFlow", "Flask"],
+  title: "Weather Forecast Web Application",
+  desc: "A responsive weather forecasting web application that displays current weather conditions, a 5-day forecast with interactive charts, location-based weather detection, and search history for previously searched cities.",
+  tags: ["React", "OpenWeather API", "Chart.js", "TailwindCSS"],
+  category: "Web",
+  github: "https://github.com/abhiahek143/weather",
+},
+  {
+    title: "Air Drawing Using Hand Gesture Recognition",
+    desc: "Developed a real-time interactive drawing system using hand gesture recognition. Implemented colour selection, eraser mode, and two-hand gesture control.",
+    tags: ["Python", "OpenCV", "MediaPipe", "NumPy"],
     category: "Computer Vision",
     github: "#",
     demo: "#",
     featured: true,
   },
   {
-    title: "Air Drawing with Gestures",
-    desc: "Hand gesture recognition system that lets users draw in the air using MediaPipe and real-time video processing.",
-    tags: ["Python", "MediaPipe", "OpenCV", "NumPy"],
-    category: "Computer Vision",
-    github: "#",
-    demo: "#",
-    featured: true,
-  },
-  {
-    title: "Sentiment Analysis Dashboard",
-    desc: "Real-time social media sentiment analyzer with interactive charts and ML-powered classification.",
-    tags: ["Python", "NLTK", "React", "D3.js"],
+    title: "LiFi and Chatbot",
+    desc: "Designed a data transmission system using light as the communication medium. Successfully transferred data between two communicable devices.",
+    tags: ["Arduino Uno", "Light Source", "Communicable Devices", "Embedded Systems"],
     category: "AI / ML",
     github: "#",
     demo: "#",
+    featured: true,
   },
-  {
-    title: "E-Commerce Platform",
-    desc: "Full-stack e-commerce application with payment integration, admin dashboard, and responsive design.",
-    tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
-    category: "Web",
-    github: "#",
-    demo: "#",
-  },
-  {
-    title: "Developer Portfolio Generator",
-    desc: "A tool that auto-generates portfolio websites from GitHub profiles using AI to write descriptions.",
-    tags: ["Next.js", "OpenAI API", "TailwindCSS"],
-    category: "Web",
-    github: "#",
-    demo: "#",
-  },
+ {
+  title: "My Portfolio Website",
+  desc: "A modern and responsive personal portfolio website showcasing my projects, technical skills, achievements, and contact information with smooth animations and a professional UI.",
+  tags: ["React", "Node.js", "TailwindCSS"],
+  category: "Web",
+  github: "#",
+  demo: "#",
+},
 ];
 
 const ProjectsSection = () => {
@@ -115,9 +106,7 @@ const ProjectsSection = () => {
                 <a href={p.github} className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 text-sm">
                   <Github size={14} /> Code
                 </a>
-                <a href={p.demo} className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 text-sm">
-                  <ExternalLink size={14} /> Demo
-                </a>
+                
               </div>
             </motion.div>
           ))}

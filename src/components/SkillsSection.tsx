@@ -6,36 +6,39 @@ const categories = [
     title: "Programming Languages",
     skills: [
       { name: "Python", level: 95 },
-      { name: "JavaScript/TypeScript", level: 90 },
       { name: "Java", level: 75 },
-      { name: "C++", level: 70 },
+      { name: "SQL", level: 80 },
+      { name: "HTML", level: 70 },
     ],
   },
   {
     title: "AI & Machine Learning",
     skills: [
-      { name: "TensorFlow / PyTorch", level: 88 },
+      { name: "Machine Learning", level: 85 },
+      { name: "Artificial Intelligence", level: 80 },
       { name: "Computer Vision (OpenCV)", level: 85 },
-      { name: "NLP & Transformers", level: 80 },
-      { name: "Scikit-learn", level: 90 },
+      { name: "Data Analytics", level: 75 },
     ],
   },
   {
     title: "Web Development",
     skills: [
-      { name: "React / Next.js", level: 92 },
-      { name: "Node.js / Express", level: 85 },
-      { name: "TailwindCSS", level: 95 },
-      { name: "PostgreSQL / MongoDB", level: 80 },
+      { name: "React / Next.js", level: 80 },
+      { name: "Node.js / Express", level: 75 },
+      { name: "TailwindCSS", level: 85 },
+      { name: "Full Stack Development", level: 80 },
     ],
   },
   {
-    title: "Tools & Technologies",
+    title: "Tools & Databases",
     skills: [
-      { name: "Git / GitHub", level: 92 },
-      { name: "Docker", level: 78 },
-      { name: "AWS / GCP", level: 72 },
-      { name: "Linux", level: 80 },
+      { name: "VS Code", level: 90 },
+      { name: "Google Colab", level: 85 },
+      { name: "MySQL", level: 80 },
+      { name: "MongoDB", level: 70 },
+      {name: "Git & GitHub", level: 80 },
+      {name: "Docker", level: 65 },
+
     ],
   },
 ];

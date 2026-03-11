@@ -31,7 +31,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         <a href="#" className="text-xl font-bold text-gradient font-mono">
-          {"<Dev />"}
+          Portfolio
         </a>
 
         {/* Desktop */}
@@ -46,7 +46,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="/resume.pdf"
+            href="/abhishek-hs.pdf"
             className="text-sm px-4 py-2 rounded-md bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity"
           >
             Resume

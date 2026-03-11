@@ -5,19 +5,12 @@ import { Briefcase, Award, BookOpen } from "lucide-react";
 const experiences = [
   {
     role: "AI Research Intern",
-    company: "TechCorp AI Lab",
-    period: "Jun 2023 — Aug 2023",
+    company: "Tech AI Lab",
     desc: "Developed computer vision models for object detection. Improved model accuracy by 15% through data augmentation and transfer learning techniques.",
     icon: Briefcase,
-  },
-  {
-    role: "Software Engineering Intern",
-    company: "WebScale Solutions",
-    period: "Jan 2023 — May 2023",
-    desc: "Built RESTful APIs and React frontends. Implemented CI/CD pipelines and contributed to the core product used by 10K+ users.",
-    icon: Briefcase,
-  },
-];
+    period: "June 2025 - Aug 2025",
+  }
+  ];
 
 const interests = [
   "Artificial Intelligence", "Machine Learning", "Computer Vision",
@@ -25,12 +18,12 @@ const interests = [
 ];
 
 const achievements = [
-  "TensorFlow Developer Certificate",
-  "AWS Cloud Practitioner",
-  "1st Place — University AI Hackathon 2023",
-  "Google Summer of Code Participant",
-  "Dean's List — 4 consecutive semesters",
-  "Published paper on gesture recognition",
+  "2nd Place – Robo Race Competition (2022)",
+  "National Level Project Competition – Line Follower Bot (2023)",
+  "Inspire Award (District Level) – Agriculture Fertilizer Spraying Drone (2020)",
+  "Computer Vision Using Python (2025)",
+  "NPTEL – Introduction to Intellectual Property (2025)",
+  "HTML Certification & Oracle Database Course (2024)"
 ];
 
 const ExperienceSection = () => (
@@ -82,7 +75,7 @@ const ExperienceSection = () => (
             <motion.div
               key={item}
               initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 5, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="glass rounded-lg p-4 text-sm text-muted-foreground flex items-start gap-3"

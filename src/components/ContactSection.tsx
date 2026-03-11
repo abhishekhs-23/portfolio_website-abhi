@@ -35,9 +35,9 @@ const ContactSection = () => {
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great.
           </p>
           {[
-            { icon: Mail, label: "hello@alexchen.dev" },
-            { icon: MapPin, label: "San Francisco, CA" },
-            { icon: Phone, label: "+1 (555) 123-4567" },
+            { icon: Mail, label: "abhishekhs0217@gmail.com" },
+            { icon: MapPin, label: "near ssit college kunigal road , Tumakuru" },
+            { icon: Phone, label: "+91-9019867263" },
           ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-3 text-muted-foreground">
               <div className="w-10 h-10 rounded-lg glass flex items-center justify-center text-primary">

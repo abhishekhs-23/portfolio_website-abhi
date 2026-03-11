@@ -41,7 +41,7 @@ const HeroSection = () => {
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
         >
           Hi, I'm{" "}
-          <span className="text-gradient">Alex Chen</span>
+          <span className="text-gradient">Abhishek H S</span>
         </motion.h1>
 
         <motion.p
@@ -50,7 +50,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4"
         >
-          AI Developer & Software Engineer
+          AI/ML Engineer & Full Stack Web Developer
         </motion.p>
 
         <motion.p
@@ -60,7 +60,8 @@ const HeroSection = () => {
           className="text-muted-foreground max-w-lg mx-auto mb-10"
         >
           Building intelligent systems at the intersection of artificial intelligence, 
-          computer vision, and modern web technologies.
+          machine learning, and modern web technologies. Passionate about creating 
+          AI-powered solutions and seamless user experiences.
         </motion.p>
 
         <motion.div
@@ -90,9 +91,9 @@ const HeroSection = () => {
           className="flex items-center justify-center gap-6"
         >
           {[
-            { icon: Github, href: "https://github.com" },
-            { icon: Linkedin, href: "https://linkedin.com" },
-            { icon: Mail, href: "mailto:hello@alexchen.dev" },
+            { icon: Github, href: "https://github.com/abhiahek143" },
+            { icon: Linkedin, href: "https://linkedin.com/in/abhishek-h-s-6589ab304" },
+            { icon: Mail, href: "mailto:abhishekhs0217@gmail.com" },
           ].map(({ icon: Icon, href }) => (
             <a
               key={href}

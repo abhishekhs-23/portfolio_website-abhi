@@ -4,15 +4,15 @@ const Footer = () => (
   <footer className="border-t border-border py-12 px-6">
     <div className="container mx-auto max-w-6xl flex flex-col md:flex-row items-center justify-between gap-6">
       <div>
-        <span className="text-gradient font-mono font-bold text-lg">{"<Dev />"}</span>
-        <p className="text-xs text-muted-foreground mt-1">© 2024 Alex Chen. All rights reserved.</p>
+        <span className="text-gradient font-mono font-bold text-lg">{"< ❤️/>"}</span>
+        <p className="text-xs text-muted-foreground mt-1">© 2026 Abhishek H S. All rights reserved.</p>
       </div>
 
       <div className="flex items-center gap-4">
         {[
-          { icon: Github, href: "https://github.com", label: "GitHub" },
-          { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-          { icon: Mail, href: "mailto:hello@alexchen.dev", label: "Email" },
+          { icon: Github, href: "https://github.com/abhiahek143", label: "GitHub" },
+          { icon: Linkedin, href: "https://www.linkedin.com/in/abhishek-h-s-6589ab304/", label: "LinkedIn" },
+          { icon: Mail, href: "mailto:abhishekhs0217@gmail.com", label: "Email" },
         ].map(({ icon: Icon, href, label }) => (
           <a
             key={label}
@@ -26,11 +26,13 @@ const Footer = () => (
           </a>
         ))}
         <a
-          href="/resume.pdf"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg glass text-sm text-muted-foreground hover:text-primary transition-colors"
-        >
-          <FileDown size={14} /> Resume
-        </a>
+  href="/abhishek-hs.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-2 px-4 py-2 rounded-lg glass text-sm text-muted-foreground hover:text-primary transition-colors"
+>
+  <FileDown size={14} /> Resume
+</a>
       </div>
     </div>
   </footer>
