@@ -3,15 +3,17 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars, Html } from "@react-three/drei";
 import * as THREE from "three";
 
-// ─── HEX LAYOUT ───────────────────────────────────────────────────
+// ─── HEX NODE LAYOUT ─────────────────────────────────────────────
 const NODES = [
-  { id: "skills",     label: "SKILLS",     sub: "TOOLS · TECH · GROWTH",    color: "#ec4899", pos: [0,    3.8,  0.5]  as [number,number,number] },
-  { id: "about",      label: "ABOUT",      sub: "IDEAS · VALUES · JOURNEY", color: "#f59e0b", pos: [-4.2, 1.4, -0.3]  as [number,number,number] },
-  { id: "experience", label: "EXPERIENCE", sub: "LEARN · BUILD · GROW",     color: "#22d3ee", pos: [4.2,  1.4, -0.3]  as [number,number,number] },
-  { id: "projects",   label: "PROJECTS",   sub: "IDEAS · TO · IMPACT",      color: "#3b82f6", pos: [-4.2,-1.6,  0.3]  as [number,number,number] },
-  { id: "contact",    label: "CONTACT",    sub: "LET'S · COLLABORATE",      color: "#a78bfa", pos: [4.2, -1.6,  0.3]  as [number,number,number] },
-  { id: "github",     label: "GITHUB",     sub: "THINK · CREATE · REPEAT",  color: "#34d399", pos: [0,   -3.8,  0.5]  as [number,number,number] },
+  { id: "skills", label: "SKILLS", sub: "TOOLS · TECH · GROWTH", color: "#ec4899", pos: [0, 3.8, 0.5] as [number, number, number] },
+  { id: "about", label: "ABOUT", sub: "IDEAS · VALUES · JOURNEY", color: "#f59e0b", pos: [-4.2, 1.4, -0.3] as [number, number, number] },
+  { id: "experience", label: "EXPERIENCE", sub: "LEARN · BUILD · GROW", color: "#22d3ee", pos: [4.2, 1.4, -0.3] as [number, number, number] },
+  { id: "projects", label: "PROJECTS", sub: "IDEAS · TO · IMPACT", color: "#3b82f6", pos: [-4.2, -1.6, 0.3] as [number, number, number] },
+  { id: "contact", label: "CONTACT", sub: "LET'S · COLLABORATE", color: "#a78bfa", pos: [4.2, -1.6, 0.3] as [number, number, number] },
+  { id: "github", label: "GITHUB", sub: "THINK · CREATE · REPEAT", color: "#34d399", pos: [0, -3.8, 0.5] as [number, number, number] },
 ];
+
+const PLANET_R = 1.38;
 
 // ─── ORBIT RING ───────────────────────────────────────────────────
 const Ring = ({ r, tilt, speed, color, opacity, thickness = 0.012 }: {
@@ -27,26 +29,16 @@ const Ring = ({ r, tilt, speed, color, opacity, thickness = 0.012 }: {
   );
 };
 
-// ─── NEBULA CLOUD ─────────────────────────────────────────────────
+// ─── NEBULA ───────────────────────────────────────────────────────
 const Nebula = ({ position, color, scale }: {
   position: [number, number, number]; color: string; scale: number;
-}) => {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.z = state.clock.getElapsedTime() * 0.018;
-    }
-  });
-  return (
-    <mesh ref={ref} position={position} scale={scale}>
-      <sphereGeometry args={[1, 12, 12]} />
-      <meshStandardMaterial
-        color={color} emissive={color} emissiveIntensity={0.4}
-        transparent opacity={0.04} depthWrite={false}
-      />
-    </mesh>
-  );
-};
+}) => (
+  <mesh position={position} scale={scale}>
+    <sphereGeometry args={[1, 10, 10]} />
+    <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.35}
+      transparent opacity={0.04} depthWrite={false} />
+  </mesh>
+);
 
 // ─── ASTEROID DUST BELT ───────────────────────────────────────────
 const DustBelt = () => {
@@ -57,25 +49,21 @@ const DustBelt = () => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      // Scatter in a ring between radius 2.5 and 5.8
       const angle = Math.random() * Math.PI * 2;
       const r = 2.5 + Math.random() * 3.3;
       const y = (Math.random() - 0.5) * 1.2;
-      pos[i * 3]     = Math.cos(angle) * r;
+      pos[i * 3] = Math.cos(angle) * r;
       pos[i * 3 + 1] = y;
-      pos[i * 3 + 2] = Math.sin(angle) * r * 0.5; // slight z-flatten for depth
-      // Warm amber / cool blue-white mix
+      pos[i * 3 + 2] = Math.sin(angle) * r * 0.5;
       const warm = Math.random() > 0.55;
-      col[i * 3]     = warm ? 0.85 : 0.7;
+      col[i * 3] = warm ? 0.85 : 0.70;
       col[i * 3 + 1] = warm ? 0.65 : 0.75;
       col[i * 3 + 2] = warm ? 0.30 : 0.95;
     }
     return { positions: pos, colors: col };
   }, []);
 
-  useFrame((_, d) => {
-    if (ref.current) ref.current.rotation.y += d * 0.012;
-  });
+  useFrame((_, d) => { if (ref.current) ref.current.rotation.y += d * 0.012; });
 
   return (
     <points ref={ref}>
@@ -88,88 +76,61 @@ const DustBelt = () => {
   );
 };
 
-// ─── CENTER PLANET (25% larger, brighter) ────────────────────────
-const PLANET_R = 1.38; // was 1.1 → ~25% bigger
-
+// ─── CENTER PLANET ────────────────────────────────────────────────
+// Uses Html billboard so the photo is always pixel-perfect — no sphere UV distortion.
 const CenterPlanet = () => {
-  const texture = useMemo(() => {
-    const size = 768; // higher res for better face clarity
-    const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d")!;
-    const tex = new THREE.CanvasTexture(canvas);
-
-    const img = new window.Image();
-    img.onload = () => {
-      // Rich dark navy base
-      ctx.fillStyle = "#06101c";
-      ctx.fillRect(0, 0, size, size);
-
-      // Subtle warm vignette gradient behind face
-      const gradient = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
-      gradient.addColorStop(0,   "rgba(212,165,116,0.08)");
-      gradient.addColorStop(0.6, "rgba(0,0,0,0)");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, size, size);
-
-      // Clip to circle — leave a 6px margin for the border
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2 - 6, 0, Math.PI * 2);
-      ctx.clip();
-      // Draw photo slightly brighter via globalAlpha + composite
-      ctx.globalAlpha = 1.0;
-      ctx.drawImage(img, 0, 0, size, size);
-      // Subtle warm overlay
-      ctx.globalCompositeOperation = "overlay";
-      ctx.fillStyle = "rgba(212,130,60,0.08)";
-      ctx.fillRect(0, 0, size, size);
-      ctx.restore();
-
-      // Outer amber glow ring (double stroke)
-      ctx.strokeStyle = "rgba(212,165,116,0.90)";
-      ctx.lineWidth = 10;
-      ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2 - 5, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.strokeStyle = "rgba(245,158,11,0.30)";
-      ctx.lineWidth = 18;
-      ctx.stroke();
-
-      tex.needsUpdate = true;
-    };
-    img.src = "/dp_abhi.png";
-    return tex;
-  }, []);
-
   const ringRef = useRef<THREE.Group>(null);
-  useFrame((_, d) => {
-    if (ringRef.current) ringRef.current.rotation.z += d * 0.055;
-  });
+  useFrame((_, d) => { if (ringRef.current) ringRef.current.rotation.z += d * 0.055; });
 
   return (
     <group>
-      {/* Deep glow base */}
-      <mesh>
-        <sphereGeometry args={[PLANET_R * 1.18, 20, 20]} />
-        <meshStandardMaterial color="#d4a574" emissive="#d4a574" emissiveIntensity={0.22}
-          transparent opacity={0.08} side={THREE.BackSide} />
-      </mesh>
-
-      {/* Photo sphere */}
+      {/* Dark planet base */}
       <mesh>
         <sphereGeometry args={[PLANET_R, 64, 64]} />
-        <meshStandardMaterial map={texture} roughness={0.42} metalness={0.06}
-          envMapIntensity={1.2} />
+        <meshStandardMaterial color="#06101e" roughness={0.85} metalness={0.05} />
       </mesh>
 
-      {/* Rim atmosphere glow */}
+      {/* Amber atmosphere rim */}
       <mesh>
-        <sphereGeometry args={[PLANET_R * 1.06, 32, 32]} />
+        <sphereGeometry args={[PLANET_R * 1.07, 32, 32]} />
         <meshStandardMaterial color="#f59e0b" emissive="#f59e0b" emissiveIntensity={0.55}
-          transparent opacity={0.08} side={THREE.BackSide} />
+          transparent opacity={0.09} side={THREE.BackSide} />
       </mesh>
+
+      {/* ── Profile photo as HTML billboard ──────────────────────────
+          Always faces the camera, always pixel-sharp. No sphere distortion. */}
+      <Html
+        center
+        distanceFactor={7.9}
+        style={{ pointerEvents: "none", userSelect: "none" }}
+        zIndexRange={[0, 0]}
+      >
+        <div style={{
+          width: "250px",
+          height: "250px",
+          borderRadius: "50%",
+          overflow: "hidden",
+          border: "3px solid rgba(212, 175, 135, 0.88)",
+          boxShadow: [
+            "0 0 0 7px rgba(212,165,116,0.11)",
+            "0 0 38px rgba(212,165,116,0.38)",
+            "0 0 75px rgba(212,165,116,0.13)",
+            "inset 0 0 28px rgba(0,0,0,0.42)",
+          ].join(", "),
+        }}>
+          <img
+            src="/dp_abhi.png"
+            alt="Abhishek H S"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              display: "block",
+              background: "#06101e",
+            }}
+          />
+        </div>
+      </Html>
 
       {/* Saturn rings */}
       <group ref={ringRef} rotation={[0.35, 0, 0]}>
@@ -187,18 +148,17 @@ const CenterPlanet = () => {
         ))}
       </group>
 
-      {/* Planet point light — brighter */}
       <pointLight color="#d4a574" intensity={18} distance={11} />
     </group>
   );
 };
 
-// ─── SECTION NODE (smaller, stronger glow) ───────────────────────
+// ─── SECTION NODE ─────────────────────────────────────────────────
 const SectionNode = ({ node, onClick }: { node: typeof NODES[0]; onClick: () => void }) => {
   const [hovered, setHovered] = useState(false);
   const groupRef = useRef<THREE.Group>(null);
-  const coreRef  = useRef<THREE.Mesh>(null);
-  const timeRef  = useRef(Math.random() * Math.PI * 2);
+  const coreRef = useRef<THREE.Mesh>(null);
+  const timeRef = useRef(Math.random() * Math.PI * 2);
 
   useFrame((_, d) => {
     timeRef.current += d;
@@ -221,7 +181,7 @@ const SectionNode = ({ node, onClick }: { node: typeof NODES[0]; onClick: () => 
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
-      {/* Outer glow — stronger */}
+      {/* Outer glow halo */}
       <mesh>
         <sphereGeometry args={[hovered ? 0.80 : 0.62, 18, 18]} />
         <meshStandardMaterial
@@ -231,7 +191,7 @@ const SectionNode = ({ node, onClick }: { node: typeof NODES[0]; onClick: () => 
         />
       </mesh>
 
-      {/* Core orb — slightly smaller (was 0.48 → 0.40) */}
+      {/* Core orb */}
       <mesh ref={coreRef} scale={hovered ? 1.20 : 1}>
         <sphereGeometry args={[0.40, 32, 32]} />
         <meshStandardMaterial
@@ -241,7 +201,7 @@ const SectionNode = ({ node, onClick }: { node: typeof NODES[0]; onClick: () => 
         />
       </mesh>
 
-      {/* Equatorial ring */}
+      {/* Equatorial ring accent */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.43, 0.020, 8, 60]} />
         <meshStandardMaterial
@@ -253,7 +213,7 @@ const SectionNode = ({ node, onClick }: { node: typeof NODES[0]; onClick: () => 
 
       {hovered && <pointLight color={node.color} intensity={10} distance={4.5} />}
 
-      {/* Labels — brighter, bigger */}
+      {/* Label */}
       <Html center distanceFactor={12} position={[0, -0.85, 0]}
         style={{ pointerEvents: "none", userSelect: "none" }}>
         <div style={{ textAlign: "center", width: "160px", transform: "translateX(-50%)" }}>
@@ -284,21 +244,19 @@ const SectionNode = ({ node, onClick }: { node: typeof NODES[0]; onClick: () => 
   );
 };
 
-// ─── CONNECTION LINE (more visible) ──────────────────────────────
+// ─── CONNECTION LINE ──────────────────────────────────────────────
 const ConnectionLine = ({ to, color }: { to: [number, number, number]; color: string }) => {
   const geo = useMemo(() => {
-    // Line only goes from center to halfway point (to avoid overlapping planet)
-    const halfR = 1.6; // stop at planet edge
     const full = new THREE.Vector3(...to);
     const dir = full.clone().normalize();
-    const start = dir.clone().multiplyScalar(halfR);
-    const end   = dir.clone().multiplyScalar(full.length() * 0.72);
+    const start = dir.clone().multiplyScalar(PLANET_R * 1.05);
+    const end = dir.clone().multiplyScalar(full.length() * 0.72);
     return new THREE.BufferGeometry().setFromPoints([start, end]);
   }, [to]);
 
   return (
     <line geometry={geo}>
-      <lineBasicMaterial color={color} transparent opacity={0.20} />
+      <lineBasicMaterial color={color} transparent opacity={0.22} />
     </line>
   );
 };
@@ -308,26 +266,25 @@ const SolarScene = ({ onNodeClick }: { onNodeClick: (id: string) => void }) => (
   <>
     <ambientLight intensity={0.50} />
     <directionalLight position={[8, 6, 5]} intensity={1.0} color="#f0e8d8" />
-    <pointLight position={[-10, 5, -5]} intensity={5}   color="#3050cc" distance={30} />
-    <pointLight position={[10, -4,  6]} intensity={3.0} color="#cc4010" distance={22} />
+    <pointLight position={[-10, 5, -5]} intensity={5} color="#3050cc" distance={30} />
+    <pointLight position={[10, -4, 6]} intensity={3.0} color="#cc4010" distance={22} />
 
     <color attach="background" args={["#030810"]} />
     <fog attach="fog" args={["#030810", 22, 55]} />
 
-    {/* Stars */}
     <Stars radius={120} depth={70} count={5500} factor={3.5} saturation={0.15} fade speed={0.10} />
 
-    {/* Nebula clouds — two subtle glowing masses */}
-    <Nebula position={[-18,  8, -30]} color="#4060cc" scale={12} />
-    <Nebula position={[ 22, -6, -25]} color="#8040a0" scale={9}  />
+    {/* Nebula clouds */}
+    <Nebula position={[-18, 8, -30]} color="#4060cc" scale={12} />
+    <Nebula position={[22, -6, -25]} color="#8040a0" scale={9} />
 
-    {/* Asteroid dust belt */}
+    {/* Dust belt */}
     <DustBelt />
 
-    {/* Decorative orbit rings — more visible */}
-    <Ring r={2.8} tilt={0.25} speed={ 0.04} color="#d4a574" opacity={0.18} thickness={0.013} />
+    {/* Orbit rings */}
+    <Ring r={2.8} tilt={0.25} speed={0.04} color="#d4a574" opacity={0.18} thickness={0.013} />
     <Ring r={4.5} tilt={0.18} speed={-0.03} color="#7c6fa0" opacity={0.13} thickness={0.011} />
-    <Ring r={5.9} tilt={0.11} speed={ 0.02} color="#d4a574" opacity={0.08} thickness={0.010} />
+    <Ring r={5.9} tilt={0.11} speed={0.02} color="#d4a574" opacity={0.08} thickness={0.010} />
 
     {/* Connection lines */}
     {NODES.map((n) => <ConnectionLine key={n.id} to={n.pos} color={n.color} />)}
@@ -350,7 +307,7 @@ const SolarSystem = () => {
   return (
     <section id="solar-system" className="relative overflow-hidden" style={{ height: "100vh" }}>
 
-      {/* "A Curiosity" — moved lower with breathing room */}
+      {/* "A Curiosity" — lower with breathing room */}
       <div className="absolute bottom-4 inset-x-0 z-10 flex flex-col items-center pb-3 pointer-events-none">
         <div className="w-16 h-px bg-white/10 mb-5" />
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white/70 tracking-widest">

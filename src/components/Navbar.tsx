@@ -50,8 +50,9 @@ const Navbar = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[95%] md:w-auto backdrop-blur-xl rounded-full border ${navBg}`}
     >
-      <div className="flex items-center justify-between md:justify-center py-3 px-5 md:px-8 gap-8">
-        {/* Logo */}
+      {/* ── Desktop: 3-zone layout ── Logo | Links (center) | Actions */}
+      <div className="hidden md:grid grid-cols-[auto_1fr_auto] items-center py-3 px-6 gap-6">
+        {/* Logo — left */}
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); handleNavClick("#"); }}
@@ -60,8 +61,8 @@ const Navbar = () => {
           A<span className="text-amber-500">.</span>
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6">
+        {/* Nav links — truly centered in the middle column */}
+        <div className="flex items-center justify-center gap-6">
           {links.map((l) => (
             <a
               key={l.href}
@@ -74,8 +75,10 @@ const Navbar = () => {
               {l.label}
             </a>
           ))}
+        </div>
 
-          {/* Theme toggle */}
+        {/* Actions — right */}
+        <div className="flex items-center gap-3">
           <button
             onClick={toggleTheme}
             className={`w-8 h-8 flex items-center justify-center rounded-full border transition-all duration-300 hover:scale-110 ${
@@ -102,15 +105,22 @@ const Navbar = () => {
             Resume ↗
           </a>
         </div>
+      </div>
 
-        {/* Mobile right: theme + hamburger */}
-        <div className="flex items-center gap-2 md:hidden">
+      {/* ── Mobile: logo left, actions right ── */}
+      <div className="flex md:hidden items-center justify-between py-3 px-5">
+        <a
+          href="#"
+          onClick={(e) => { e.preventDefault(); handleNavClick("#"); }}
+          className={`text-base font-serif tracking-widest transition-colors ${isDark ? "text-white" : "text-[#1a1209]"}`}
+        >
+          A<span className="text-amber-500">.</span>
+        </a>
+        <div className="flex items-center gap-2">
           <button
             onClick={toggleTheme}
             className={`w-8 h-8 flex items-center justify-center rounded-full border transition-all ${
-              isDark
-                ? "border-white/10 text-gray-400"
-                : "border-amber-900/15 text-gray-600"
+              isDark ? "border-white/10 text-gray-400" : "border-amber-900/15 text-gray-600"
             }`}
             aria-label="Toggle theme"
           >
