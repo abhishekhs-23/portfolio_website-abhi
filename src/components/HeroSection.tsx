@@ -1,120 +1,89 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 
 const HeroSection = () => {
+  const { theme } = useTheme();
+  const bg = theme === "dark" ? "#050d1a" : "#f7f3ed";
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-mesh">
-      {/* Animated orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-primary/5 blur-3xl"
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Full hero background image — the workspace desk shot */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/ffedaf9f-10a4-4365-9f5c-f96f490c0a82.png"
+          alt="Abhishek H S workspace"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: '65% center' }}
         />
-        <motion.div
-          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/3 blur-[100px]"
-        />
+        {/* Left overlay — always dark so white text is readable */}
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${bg} 18%, ${bg}cc 30%, ${bg}33 85%, transparent 100%)` }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${bg} 0%, transparent 30%, ${bg}88 100%)` }} />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center">
+      <div className="relative z-10 container mx-auto px-6 lg:px-16 pt-28 pb-16">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-start text-left max-w-xl"
         >
-          <p className="text-primary font-mono text-sm mb-4 tracking-widest uppercase">
-            Welcome to my portfolio
+          <p className="font-mono text-xs tracking-[0.3em] uppercase mb-5 text-amber-400/80">
+            AI / ML Engineer
           </p>
-        </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight"
-        >
-          Hi, I'm{" "}
-          <span className="text-gradient">Abhishek H S</span>
-        </motion.h1>
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-normal mb-6 leading-[1.1] text-[#f5f0e8]">
+            Welcome to<br />
+            <span className="font-semibold text-white">My Space</span>
+          </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4"
-        >
-          AI/ML Engineer & Full Stack Web Developer
-        </motion.p>
+          <p className="text-base md:text-lg text-gray-300 mb-10 leading-relaxed font-light border-l-2 border-white/20 pl-6">
+            "A place where curiosity meets code,<br className="hidden md:block" />
+            where ideas become experiments,<br className="hidden md:block" />
+            and experiments become real systems."
+          </p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-muted-foreground max-w-lg mx-auto mb-10"
-        >
-          Building intelligent systems at the intersection of artificial intelligence, 
-          machine learning, and modern web technologies. Passionate about creating 
-          AI-powered solutions and seamless user experiences.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-        >
-          <a
-            href="#projects"
-            className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-primary"
-          >
-            View Projects
-          </a>
-          <a
-            href="#contact"
-            className="px-8 py-3 rounded-lg glass text-foreground font-medium hover:border-primary/50 transition-all"
-          >
-            Contact Me
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="flex items-center justify-center gap-6"
-        >
-          {[
-            { icon: Github, href: "https://github.com/abhiahek143" },
-            { icon: Linkedin, href: "https://linkedin.com/in/abhishek-h-s-6589ab304" },
-            { icon: Mail, href: "mailto:abhishekhs0217@gmail.com" },
-          ].map(({ icon: Icon, href }) => (
+          <div className="flex flex-col sm:flex-row items-start gap-4 mb-12 w-full">
             <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors duration-200"
+              href="#solar-system"
+              className="px-8 py-3 border-b-2 border-amber-500/60 text-white text-sm font-medium hover:text-amber-400 hover:border-amber-400 transition-all uppercase tracking-widest"
             >
-              <Icon size={20} />
+              Enter My World →
             </a>
-          ))}
+            <a
+              href="#about"
+              className="px-8 py-3 border-b border-white/20 text-gray-400 text-sm font-medium hover:text-white hover:border-white/40 transition-all uppercase tracking-widest"
+            >
+              More About Me →
+            </a>
+          </div>
+
+          {/* Identity bar */}
+          <div className="pt-8 border-t border-white/15 w-full">
+            <h3 className="text-lg font-semibold text-white tracking-wide mb-1">ABHISHEK H S</h3>
+            <p className="text-xs font-mono text-gray-400 mb-4 tracking-widest uppercase">AI/ML Engineer · Full Stack Developer</p>
+            <div className="flex gap-3 text-[10px] font-mono text-gray-500 uppercase tracking-widest flex-wrap">
+              <span>Generative AI</span>
+              <span className="text-amber-500/40">•</span>
+              <span>RAG</span>
+              <span className="text-amber-500/40">•</span>
+              <span>Computer Vision</span>
+              <span className="text-amber-500/40">•</span>
+              <span>Python</span>
+              <span className="text-amber-500/40">•</span>
+              <span>React</span>
+            </div>
+          </div>
         </motion.div>
       </div>
 
       {/* Scroll indicator */}
       <motion.div
         animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground"
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 z-10"
       >
-        <ArrowDown size={20} />
+        <ArrowDown size={18} />
       </motion.div>
     </section>
   );

@@ -4,76 +4,52 @@ import SectionWrapper from "./SectionWrapper";
 const categories = [
   {
     title: "Programming Languages",
-    skills: [
-      { name: "Python", level: 95 },
-      { name: "Java", level: 75 },
-      { name: "SQL", level: 80 },
-      { name: "HTML", level: 70 },
-    ],
+    skills: ["Python", "Java", "SQL", "HTML/CSS", "JavaScript", "TypeScript"],
   },
   {
     title: "AI & Machine Learning",
-    skills: [
-      { name: "Machine Learning", level: 85 },
-      { name: "Artificial Intelligence", level: 80 },
-      { name: "Computer Vision (OpenCV)", level: 85 },
-      { name: "Data Analytics", level: 75 },
-    ],
+    skills: ["Machine Learning", "Artificial Intelligence", "Computer Vision (OpenCV)", "Data Analytics", "NLP", "RAG"],
   },
   {
     title: "Web Development",
-    skills: [
-      { name: "React / Next.js", level: 80 },
-      { name: "Node.js / Express", level: 75 },
-      { name: "TailwindCSS", level: 85 },
-      { name: "Full Stack Development", level: 80 },
-    ],
+    skills: ["React / Next.js", "Node.js / Express", "TailwindCSS", "Full Stack Development", "Three.js", "REST APIs"],
   },
   {
     title: "Tools & Databases",
-    skills: [
-      { name: "VS Code", level: 90 },
-      { name: "Google Colab", level: 85 },
-      { name: "MySQL", level: 80 },
-      { name: "MongoDB", level: 70 },
-      {name: "Git & GitHub", level: 80 },
-      {name: "Docker", level: 65 },
-
-    ],
+    skills: ["VS Code", "Google Colab", "MySQL", "MongoDB", "Git & GitHub", "Docker"],
   },
 ];
 
 const SkillsSection = () => (
-  <SectionWrapper id="skills" title="Skills & Expertise" subtitle="Technologies and tools I work with daily.">
-    <div className="grid md:grid-cols-2 gap-8">
+  <SectionWrapper id="skills" title="Skills" subtitle="Tools and technologies powering my work.">
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
       {categories.map((cat, ci) => (
         <motion.div
           key={cat.title}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: ci * 0.1 }}
-          className="glass rounded-xl p-6 hover:glow-primary transition-shadow duration-500"
+          className="group"
         >
-          <h3 className="text-lg font-semibold mb-5 text-primary">{cat.title}</h3>
-          <div className="space-y-4">
-            {cat.skills.map((skill, si) => (
-              <div key={skill.name}>
-                <div className="flex justify-between text-sm mb-1.5">
-                  <span className="text-foreground">{skill.name}</span>
-                  <span className="text-muted-foreground font-mono text-xs">{skill.level}%</span>
-                </div>
-                <div className="h-1.5 rounded-full bg-secondary overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: ci * 0.1 + si * 0.05, ease: "easeOut" }}
-                    className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="p-6 border border-foreground/8 bg-foreground/[0.02] hover:border-amber-500/30 transition-colors duration-500 h-full flex flex-col">
+            <h3 className="text-[10px] font-mono text-amber-500 mb-5 tracking-widest uppercase border-b border-foreground/10 pb-3">
+              {cat.title}
+            </h3>
+            <div className="flex flex-wrap gap-2 mt-auto">
+              {cat.skills.map((skill, si) => (
+                <motion.span
+                  key={skill}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: ci * 0.08 + si * 0.04 }}
+                  className="px-2.5 py-1 border border-foreground/10 bg-foreground/[0.03] text-xs text-muted-foreground font-mono hover:bg-amber-500/15 hover:text-foreground hover:border-amber-500/40 transition-all cursor-default"
+                >
+                  {skill}
+                </motion.span>
+              ))}
+            </div>
           </div>
         </motion.div>
       ))}

@@ -1,20 +1,29 @@
 import { motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
-import { Briefcase, Award, BookOpen } from "lucide-react";
+import { Award, BookOpen } from "lucide-react";
 
 const experiences = [
+  {
+    role: "AI Product Intern",
+    company: "Innerverse Technologies",
+    desc: "Contributed to AI product development and integration. Explored practical applications of generative models to improve internal tools and user-facing features.",
+    period: "Recent",
+  },
   {
     role: "AI Research Intern",
     company: "Tech AI Lab",
     desc: "Developed computer vision models for object detection. Improved model accuracy by 15% through data augmentation and transfer learning techniques.",
-    icon: Briefcase,
-    period: "June 2025 - Aug 2025",
-  }
-  ];
+    period: "June 2025 – Aug 2025",
+  },
+];
 
 const interests = [
-  "Artificial Intelligence", "Machine Learning", "Computer Vision",
-  "Generative AI", "Web Development", "Human-Computer Interaction",
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Computer Vision",
+  "Generative AI",
+  "Web Development",
+  "Human-Computer Interaction",
 ];
 
 const achievements = [
@@ -23,65 +32,73 @@ const achievements = [
   "Inspire Award (District Level) – Agriculture Fertilizer Spraying Drone (2020)",
   "Computer Vision Using Python (2025)",
   "NPTEL – Introduction to Intellectual Property (2025)",
-  "HTML Certification & Oracle Database Course (2024)"
+  "HTML Certification & Oracle Database Course (2024)",
 ];
 
 const ExperienceSection = () => (
-  <SectionWrapper id="experience" title="Experience & Achievements" subtitle="My professional journey and accomplishments.">
-    <div className="grid lg:grid-cols-3 gap-8">
-      {/* Experience */}
-      <div className="lg:col-span-2 space-y-6">
-        <h3 className="text-xl font-semibold flex items-center gap-2">
-          <Briefcase size={18} className="text-primary" /> Experience
-        </h3>
-        {experiences.map((exp, i) => (
-          <motion.div
-            key={exp.role}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="glass rounded-xl p-6"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-              <h4 className="font-semibold text-foreground">{exp.role}</h4>
-              <span className="text-xs font-mono text-primary">{exp.period}</span>
-            </div>
-            <p className="text-sm text-muted-foreground mb-2">{exp.company}</p>
-            <p className="text-sm text-muted-foreground">{exp.desc}</p>
-          </motion.div>
-        ))}
+  <SectionWrapper id="experience" title="Experience" subtitle="Learning, growing, and building.">
+    <div className="grid lg:grid-cols-3 gap-16 relative">
+      {/* Left: Experience Timeline + Interests */}
+      <div className="lg:col-span-2 space-y-14">
+        {/* Timeline */}
+        <div className="relative border-l border-foreground/12 ml-3 space-y-12">
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={exp.role}
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
+              className="relative pl-8 group"
+            >
+              {/* Timeline dot */}
+              <div className="absolute w-2.5 h-2.5 bg-background border-2 border-amber-500/50 rounded-full -left-[5.5px] top-2 group-hover:bg-amber-500 group-hover:shadow-[0_0_12px_rgba(245,158,11,0.35)] transition-all duration-500" />
 
-        {/* Interests */}
-        <h3 className="text-xl font-semibold flex items-center gap-2 pt-6">
-          <BookOpen size={18} className="text-primary" /> Research Interests
-        </h3>
-        <div className="flex flex-wrap gap-3">
-          {interests.map((item) => (
-            <span key={item} className="glass px-4 py-2 rounded-full text-sm text-muted-foreground hover:text-primary transition-colors">
-              {item}
-            </span>
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2 gap-1">
+                <h4 className="text-xl font-serif text-foreground group-hover:text-foreground/100 transition-colors">{exp.role}</h4>
+                <span className="text-[10px] font-mono text-muted-foreground tracking-widest uppercase">{exp.period}</span>
+              </div>
+              <p className="text-xs font-mono text-amber-500/80 mb-4 uppercase tracking-widest">{exp.company}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed font-light max-w-xl">{exp.desc}</p>
+            </motion.div>
           ))}
+        </div>
+
+        {/* Research Interests */}
+        <div>
+          <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase mb-5 flex items-center gap-2 border-b border-foreground/10 pb-3">
+            <BookOpen size={14} /> Research Interests
+          </h3>
+          <div className="flex flex-wrap gap-4">
+            {interests.map((item) => (
+              <span
+                key={item}
+                className="border-b border-foreground/15 pb-0.5 text-sm text-muted-foreground hover:text-foreground hover:border-amber-500/40 transition-all duration-300 cursor-default"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Achievements */}
+      {/* Right: Achievements */}
       <div>
-        <h3 className="text-xl font-semibold flex items-center gap-2 mb-6">
-          <Award size={18} className="text-primary" /> Achievements
+        <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase mb-7 flex items-center gap-2 border-b border-foreground/10 pb-3">
+          <Award size={14} /> Achievements & Certifications
         </h3>
-        <div className="space-y-3">
+        <div className="space-y-0">
           {achievements.map((item, i) => (
             <motion.div
               key={item}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 5, x: 0 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="glass rounded-lg p-4 text-sm text-muted-foreground flex items-start gap-3"
+              transition={{ duration: 0.35, delay: i * 0.05 }}
+              className="py-4 border-b border-foreground/6 text-sm text-muted-foreground flex items-start gap-3 group hover:border-foreground/12 transition-colors"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-              {item}
+              <Award size={13} className="text-amber-500/50 mt-0.5 shrink-0" />
+              <span className="leading-relaxed group-hover:text-foreground/80 transition-colors">{item}</span>
             </motion.div>
           ))}
         </div>
