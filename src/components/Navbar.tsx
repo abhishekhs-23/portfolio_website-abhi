@@ -45,10 +45,10 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ y: -80, x: "-50%", opacity: 0 }}
+      animate={{ y: 0, x: "-50%", opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[95%] md:w-auto backdrop-blur-xl rounded-full border ${navBg}`}
+      className={`fixed top-4 left-1/2 z-50 transition-all duration-500 w-[95%] md:w-auto backdrop-blur-xl rounded-full border ${navBg}`}
     >
       {/* ── Desktop: 3-zone layout ── Logo | Links (center) | Actions */}
       <div className="hidden md:grid grid-cols-[auto_1fr_auto] items-center py-3 px-6 gap-6">
