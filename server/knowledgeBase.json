@@ -1,0 +1,17 @@
+{
+  "about": "My name is Abhi (Abhishek). I am a software developer passionate about building AI-powered web applications and modern user interfaces. I specialize in React, TypeScript, Node.js, and integrating AI models.",
+  "projects": [
+    {
+      "name": "Intellearn",
+      "description": "An AI-powered education platform designed to transform lectures into structured learning material and interactive learning experiences. Technologies used include React, Node.js, and LLMs."
+    },
+    {
+      "name": "Abhi AI",
+      "description": "An interactive digital representation of me built directly into my portfolio website, allowing visitors to ask questions about my experience using text or voice."
+    }
+  ],
+  "experience": "I have experience working on full-stack web applications, integrating modern APIs, and designing premium user interfaces. I continuously explore new technologies, particularly in the AI/ML space.",
+  "skills": ["React", "TypeScript", "Node.js", "Tailwind CSS", "Framer Motion", "Supabase", "AI/ML Integration", "Python"],
+  "education": "I am constantly learning and exploring new technologies in computer science and software engineering.",
+  "contact": "You can reach out to me via the contact form on my portfolio or connect with me on LinkedIn and GitHub."
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
+import AbhiAIRobot from "./ai/AbhiAIRobot";
 
 const links = [
   { label: "About", href: "#about" },
@@ -90,17 +91,22 @@ const Navbar = () => {
             {isDark ? <Sun size={14} /> : <Moon size={14} />}
           </button>
 
-          <a
-            href="/abhishek-hs.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center whitespace-nowrap text-xs px-4 py-1 rounded-full border font-mono hover:bg-amber-500/10 transition-all uppercase tracking-widest ${isDark
-              ? "border-amber-500/30 text-amber-400/80 hover:text-amber-300"
-              : "border-amber-600/40 text-amber-700 hover:text-amber-800"
-              }`}
-          >
-            Resume ↗
-          </a>
+          <div className="flex flex-col items-center relative">
+            <a
+              href="/abhishek-hs.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`flex items-center whitespace-nowrap text-xs px-4 py-1 rounded-full border font-mono hover:bg-amber-500/10 transition-all uppercase tracking-widest ${isDark
+                ? "border-amber-500/30 text-amber-400/80 hover:text-amber-300"
+                : "border-amber-600/40 text-amber-700 hover:text-amber-800"
+                }`}
+            >
+              Resume ↗
+            </a>
+            <div className="absolute top-full mt-2">
+              <AbhiAIRobot isDark={isDark} />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -168,6 +174,9 @@ const Navbar = () => {
               >
                 Resume
               </a>
+              <div className="flex justify-center mt-2 pb-2">
+                 <AbhiAIRobot isDark={isDark} />
+              </div>
             </div>
           </motion.div>
         )}
