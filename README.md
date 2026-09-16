@@ -1,73 +1,92 @@
-# Welcome to your Lovable project
+# Abhishek H S - AI-Powered Developer Portfolio
 
-## Project info
+Welcome to my interactive, 3D, and AI-driven developer portfolio. This project is designed not just to showcase my work, but to demonstrate my expertise in Full Stack Development, Generative AI, and Modern Web UI engineering.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🌟 Key Features
 
-## How can I edit this code?
+*   **Abhi AI (Portfolio Assistant)**: A built-in RAG-based AI assistant that knows everything about my projects, skills, and experience. 
+    *   **Text & Voice**: Supports text chat and voice input (Speech-to-Text).
+    *   **Voice Responses**: Responds with audio (Text-to-Speech) alongside text.
+    *   **Interactive Responses**: Instead of standard text blocks, the AI renders dynamic, interactive React components (like collapsible Project Cards and structured Skill sets).
+*   **3D Interactive UI**: Utilizes Three.js and React Three Fiber to render an interactive "Skills Orb" and ambient floating backgrounds.
+*   **Modern Aesthetics**: Fully responsive Dark/Light modes, smooth Framer Motion animations, and a sleek glassmorphic design system.
 
-There are several ways of editing your application.
+## 🛠️ Technology Stack
 
-**Use Lovable**
+### Frontend
+*   **React + TypeScript**: Built with Vite for rapid development.
+*   **Three.js & React Three Fiber (@react-three/drei)**: For rendering performant 3D canvases, floating nodes, and ambient particle systems.
+*   **Tailwind CSS**: For utility-first, highly customizable styling.
+*   **Framer Motion**: For complex, spring-based UI animations and page transitions.
+*   **Lucide React**: Clean, modern iconography.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### Backend (AI Server)
+*   **Node.js & Express**: Lightweight backend to handle API routing and file processing.
+*   **Groq SDK**: Powers the AI features for ultra-fast inference.
+    *   **LLM**: Uses Llama-3 for intelligent chat responses based on a local Knowledge Base (RAG).
+    *   **STT**: Uses Whisper-v3 for transcribing user voice input.
+    *   **TTS**: Integrates Text-to-Speech capabilities for an immersive assistant experience.
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
+*   Node.js (v18+)
+*   npm or yarn
+*   A Groq API Key
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 1. Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Clone the repository and install the dependencies for both the frontend and backend:
 
-Follow these steps:
+```bash
+# Install frontend dependencies
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Install backend dependencies
+cd server
+npm install
+cd ..
 ```
 
-**Edit a file directly in GitHub**
+### 2. Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Create a `.env` file in the root directory and add your Groq API key:
 
-**Use GitHub Codespaces**
+```env
+GROQ_API_KEY=your_groq_api_key_here
+PORT=3001
+VITE_API_URL=http://localhost:3001
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### 3. Running the Application
 
-## What technologies are used for this project?
+You need to run both the frontend Vite server and the backend Express server.
 
-This project is built with:
+**Start the Backend Server (Terminal 1):**
+```bash
+cd server
+npm start
+```
+*(The server will run on `http://localhost:3001` and load the `knowledgeBase.json` context).*
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+**Start the Frontend App (Terminal 2):**
+```bash
+npm run dev
+```
+*(The React app will be available on `http://localhost:8080` or the port specified by Vite).*
 
-## How can I deploy this project?
+## 📁 Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+*   `/src`: Contains the React frontend application.
+    *   `/components`: UI components (Hero, About, Projects, etc.).
+    *   `/components/ai`: The Abhi AI Chatbot and 3D Robot UI logic.
+    *   `/components/canvas`: Three.js specific WebGL components.
+    *   `/hooks`: Custom React hooks, including `useAbhiAI.ts` for managing AI state and API communication.
+*   `/server`: Contains the Express backend.
+    *   `index.js`: API routes and Groq integrations.
+    *   `knowledgeBase.json`: The central RAG data source containing all portfolio details.
 
-## Can I connect a custom domain to my Lovable project?
+## 🤝 Contact
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Feel free to reach out to me via LinkedIn or GitHub!
+*   **GitHub**: [abhishekhs-23](https://github.com/abhishekhs-23)
