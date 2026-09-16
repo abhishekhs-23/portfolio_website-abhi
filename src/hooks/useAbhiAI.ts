@@ -9,6 +9,12 @@ export interface Message {
 }
 
 export const useAbhiAI = (setAiState: (state: AIState) => void) => {
+  const getApiBaseUrl = () => {
+    if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+    if (import.meta.env.PROD) return '';
+    return 'http://localhost:3001';
+  };
+
   const [messages, setMessages] = useState<Message[]>([
     { id: '1', role: 'ai', content: "Hey, I’m Abhi AI.\nExplore Abhishek’s projects, skills, experience, and background.", type: 'text' }
   ]);
@@ -60,7 +66,7 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
         currentAudioRef.current.pause();
       }
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/ai/tts`, {
+      const response = await fetch(`${getApiBaseUrl()}/api/ai/tts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
@@ -119,7 +125,7 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
     setAiState('THINKING');
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/ai/chat`, {
+      const response = await fetch(`${getApiBaseUrl()}/api/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Send history excluding the system prompt (which backend handles)
@@ -183,7 +189,7 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
           formData.append('audio', audioBlob, 'audio.webm');
           
           try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/ai/transcribe`, {
+            const response = await fetch(`${getApiBaseUrl()}/api/ai/transcribe`, {
               method: 'POST',
               body: formData,
             });

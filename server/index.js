@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import multer from 'multer';
 import dotenv from 'dotenv';
+import os from 'os';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -21,7 +22,7 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: os.tmpdir() });
 
 // Middleware
 app.use(cors());
@@ -158,6 +159,10 @@ app.post('/api/ai/tts', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 AI Backend Server running on http://localhost:${PORT}`);
-});
+export default app;
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  app.listen(PORT, () => {
+    console.log(`🚀 AI Backend Server running on http://localhost:${PORT}`);
+  });
+}
