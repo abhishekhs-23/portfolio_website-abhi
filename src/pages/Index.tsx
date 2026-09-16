@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import HeroSection from "@/components/HeroSection";
-import SolarSystem from "@/components/SolarSystem";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -19,8 +18,7 @@ const PortfolioContent = () => {
 
   return (
     <div
-      className={`relative min-h-screen overflow-x-hidden theme-transition ${isDark ? "dark" : "light"}`}
-      style={{ backgroundColor: isDark ? "#050d1a" : "#f7f3ed" }}
+      className={`relative min-h-screen overflow-x-hidden theme-transition bg-background ${isDark ? "dark" : "light"}`}
     >
       {/* 3D WebGL Background — only visible in dark mode, faded in light */}
       <div
@@ -51,7 +49,6 @@ const PortfolioContent = () => {
         <Navbar />
         <main>
           <HeroSection />
-          <SolarSystem />
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />

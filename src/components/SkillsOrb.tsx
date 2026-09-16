@@ -1,20 +1,24 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Text, Float, OrbitControls } from "@react-three/drei";
+import { Html, Float } from "@react-three/drei";
 import * as THREE from "three";
 import { useTheme } from "@/context/ThemeContext";
 
-// A single skill node (floating sphere with label)
+// A single skill node (floating emoji with label and wireframe)
 const SkillNode = ({
   position,
   label,
+  emoji,
   color,
+  isDark,
   size = 0.22,
   speed = 1.2,
 }: {
   position: [number, number, number];
   label: string;
+  emoji: string;
   color: string;
+  isDark: boolean;
   size?: number;
   speed?: number;
 }) => {
@@ -27,99 +31,77 @@ const SkillNode = ({
     }
   });
 
+  const textColor = isDark ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.85)";
+  const textShadow = isDark 
+    ? `0 1px 8px rgba(0,0,0,0.9)` 
+    : `0 1px 4px rgba(0,0,0,0.2)`;
+
   return (
-    <Float speed={speed} rotationIntensity={0.4} floatIntensity={0.6}>
+    <Float speed={speed} rotationIntensity={0.2} floatIntensity={0.4}>
       <group position={position}>
+        {/* Wireframe shell around the emoji */}
         <mesh ref={meshRef}>
-          <icosahedronGeometry args={[size, 1]} />
+          <icosahedronGeometry args={[size * 1.3, 1]} />
           <meshStandardMaterial
             color={color}
             emissive={color}
-            emissiveIntensity={0.35}
-            metalness={0.6}
-            roughness={0.3}
-            wireframe={false}
-          />
-        </mesh>
-        {/* Wireframe shell */}
-        <mesh>
-          <icosahedronGeometry args={[size * 1.18, 1]} />
-          <meshStandardMaterial
-            color={color}
-            emissive={color}
-            emissiveIntensity={0.12}
+            emissiveIntensity={isDark ? 0.3 : 0.6}
             wireframe
             transparent
-            opacity={0.25}
+            opacity={isDark ? 0.3 : 0.5}
           />
         </mesh>
-        <Text
-          position={[0, -(size + 0.18), 0]}
-          fontSize={0.13}
-          color="white"
-          anchorX="center"
-          anchorY="top"
-          outlineWidth={0.005}
-          outlineColor="#000000"
-        >
-          {label}
-        </Text>
+        
+        {/* Emoji in the center */}
+        <Html center style={{ pointerEvents: "none", userSelect: "none" }}>
+          <div style={{ fontSize: "28px", transform: "translateY(5%)" }}>
+            {emoji}
+          </div>
+        </Html>
+
+        {/* Label perfectly aligned below */}
+        <Html center position={[0, -0.45, 0]} style={{ pointerEvents: "none", userSelect: "none" }}>
+          <div style={{ textAlign: "center", width: "120px" }}>
+            <p style={{
+              fontFamily: "JetBrains Mono, monospace",
+              fontSize: "12px",
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              color: textColor,
+              margin: 0,
+              textShadow: textShadow,
+            }}>{label}</p>
+          </div>
+        </Html>
       </group>
     </Float>
   );
 };
 
-// Connecting lines between nodes
-const ConnectionLines = ({ nodes }: { nodes: [number, number, number][] }) => {
-  const lineRef = useRef<THREE.LineSegments>(null);
-
-  const geometry = useMemo(() => {
-    const points: number[] = [];
-    // Connect select pairs (first ring to center, etc.)
-    const pairs = [
-      [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0],
-      [0, 3], [1, 4], [2, 5],
-      [6, 0], [6, 1], [6, 2],
-      [7, 3], [7, 4], [7, 5],
-    ];
-    pairs.forEach(([a, b]) => {
-      if (nodes[a] && nodes[b]) {
-        points.push(...nodes[a], ...nodes[b]);
-      }
-    });
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.Float32BufferAttribute(points, 3));
-    return geo;
-  }, [nodes]);
-
-  useFrame((state) => {
-    if (lineRef.current) {
-      const mat = lineRef.current.material as THREE.LineBasicMaterial;
-      mat.opacity = 0.08 + Math.sin(state.clock.getElapsedTime() * 0.5) * 0.04;
-    }
-  });
-
-  return (
-    <lineSegments ref={lineRef} geometry={geometry}>
-      <lineBasicMaterial color="#d4a574" transparent opacity={0.1} />
-    </lineSegments>
-  );
-};
-
 // Main scene
 const BrainScene = ({ isDark }: { isDark: boolean }) => {
-  const skills = [
-    { label: "Python", color: "#3b82f6", pos: [2.0, 0.5, 0.0] as [number, number, number] },
-    { label: "React", color: "#22d3ee", pos: [1.0, 1.8, 0.8] as [number, number, number] },
-    { label: "ML", color: "#a78bfa", pos: [-1.0, 1.6, 0.5] as [number, number, number] },
-    { label: "RAG", color: "#f59e0b", pos: [-2.0, 0.2, -0.3] as [number, number, number] },
-    { label: "OpenCV", color: "#34d399", pos: [-1.2, -1.5, 0.6] as [number, number, number] },
-    { label: "Node.js", color: "#86efac", pos: [1.2, -1.6, 0.4] as [number, number, number] },
-    { label: "LLMs", color: "#fb923c", pos: [0.0, 0.8, 2.2] as [number, number, number] },
-    { label: "SQL", color: "#c084fc", pos: [0.0, 0.6, -2.2] as [number, number, number] },
+  // Dynamically place any number of skills in a perfect circle
+  const R = 2.4;
+  const rawSkills = [
+    { label: "Python", emoji: "🐍", color: "#3b82f6" },
+    { label: "React", emoji: "⚛️", color: "#22d3ee" },
+    { label: "FastAPI", emoji: "⚡", color: "#86efac" },
+    { label: "SQL", emoji: "🗄️", color: "#c084fc" },
+    { label: "LLMs", emoji: "🤖", color: "#fb923c" },
+    { label: "RAG", emoji: "📚", color: "#f59e0b" },
+    { label: "Machine Learning", emoji: "🧠", color: "#a78bfa" },
+    { label: "NLP", emoji: "🔤", color: "#f43f5e" },
+    { label: "Docker", emoji: "🐳", color: "#0ea5e9" },
+    { label: "Supabase", emoji: "🗃️", color: "#10b981" },
   ];
 
-  const nodePositions = skills.map((s) => s.pos);
+  const skills = rawSkills.map((s, i) => {
+    const angle = (i / rawSkills.length) * Math.PI * 2 - Math.PI / 2;
+    return {
+      ...s,
+      pos: [Math.cos(angle) * R, Math.sin(angle) * -R, 0] as [number, number, number],
+    };
+  });
 
   return (
     <>
@@ -128,14 +110,33 @@ const BrainScene = ({ isDark }: { isDark: boolean }) => {
       <pointLight position={[-3, 2, 2]} intensity={2} color="#d4a574" distance={10} />
       <pointLight position={[3, -2, -2]} intensity={1.5} color="#6366f1" distance={10} />
 
-      <ConnectionLines nodes={nodePositions} />
+      {/* A neat circular track line */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[R, 0.005, 16, 100]} />
+        <meshBasicMaterial color={isDark ? "#d4a574" : "#888888"} transparent opacity={isDark ? 0.15 : 0.08} />
+      </mesh>
+
+      {/* Connections to center */}
+      {skills.map((skill, i) => {
+        const geo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(0, 0, 0),
+          new THREE.Vector3(...skill.pos)
+        ]);
+        return (
+          <line key={`line-${i}`} geometry={geo}>
+            <lineBasicMaterial color={isDark ? "#d4a574" : "#888888"} transparent opacity={isDark ? 0.1 : 0.05} />
+          </line>
+        );
+      })}
 
       {skills.map((skill) => (
         <SkillNode
           key={skill.label}
           position={skill.pos}
           label={skill.label}
+          emoji={skill.emoji}
           color={skill.color}
+          isDark={isDark}
           size={0.22}
           speed={0.8 + Math.random() * 0.5}
         />
@@ -165,15 +166,6 @@ const BrainScene = ({ isDark }: { isDark: boolean }) => {
           />
         </mesh>
       </Float>
-
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={0.6}
-        maxPolarAngle={Math.PI * 0.75}
-        minPolarAngle={Math.PI * 0.25}
-      />
     </>
   );
 };
@@ -194,15 +186,12 @@ const SkillsOrb = () => {
         }}
       />
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 55 }}
+        camera={{ position: [0, 0, 6.5], fov: 55 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 1.5]}
       >
         <BrainScene isDark={isDark} />
       </Canvas>
-      <p className="absolute bottom-3 left-0 right-0 text-center text-[10px] font-mono uppercase tracking-widest text-muted-foreground opacity-50">
-        Drag to explore · Auto-rotating
-      </p>
     </div>
   );
 };

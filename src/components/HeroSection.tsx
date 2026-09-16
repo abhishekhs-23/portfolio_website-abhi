@@ -4,7 +4,7 @@ import { useTheme } from "@/context/ThemeContext";
 
 const HeroSection = () => {
   const { theme } = useTheme();
-  const bg = theme === "dark" ? "#050d1a" : "#f7f3ed";
+  const bg = theme === "dark" ? "#101726" : "#f7f3ed";
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -17,7 +17,7 @@ const HeroSection = () => {
           style={{ objectPosition: '65% center' }}
         />
         {/* Left overlay — always dark so white text is readable */}
-        <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${bg} 18%, ${bg}cc 30%, ${bg}33 85%, transparent 100%)` }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(to right, ${bg} 15%, ${bg}cc 20%, ${bg}33 40%, transparent 100%)` }} />
         <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${bg} 0%, transparent 30%, ${bg}88 100%)` }} />
       </div>
 
@@ -28,48 +28,46 @@ const HeroSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-start text-left max-w-xl"
         >
-          <p className="font-mono text-xs tracking-[0.3em] uppercase mb-5 text-amber-400/80">
+          <p className="font-mono text-xs tracking-[0.3em] uppercase mb-5 text-amber-500">
             AI / ML Engineer
           </p>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-normal mb-6 leading-[1.1] text-[#f5f0e8]">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-normal mb-6 leading-[1.1] text-foreground/90">
             Welcome to<br />
-            <span className="font-semibold text-white">My Space</span>
+            <span className="font-semibold text-foreground">My Space</span>
           </h1>
 
-          <p className="text-base md:text-lg text-gray-300 mb-10 leading-relaxed font-light border-l-2 border-white/20 pl-6">
-            "A place where curiosity meets code,<br className="hidden md:block" />
-            where ideas become experiments,<br className="hidden md:block" />
-            and experiments become real systems."
+          <p className="text-base md:text-lg text-muted-foreground mb-10 leading-relaxed font-light border-l-2 border-foreground/20 pl-6">
+            I build AI-powered applications, backend systems, and interactive web experiences that turn ideas into useful software.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4 mb-12 w-full">
             <a
-              href="#solar-system"
-              className="px-8 py-3 border-b-2 border-amber-500/60 text-white text-sm font-medium hover:text-amber-400 hover:border-amber-400 transition-all uppercase tracking-widest"
+              href="#projects"
+              className="px-8 py-3 border-b-2 border-amber-500/60 text-foreground text-sm font-medium hover:text-amber-500 hover:border-amber-500 transition-all uppercase tracking-widest"
             >
-              Enter My World →
+              View Projects →
             </a>
             <a
               href="#about"
-              className="px-8 py-3 border-b border-white/20 text-gray-400 text-sm font-medium hover:text-white hover:border-white/40 transition-all uppercase tracking-widest"
+              className="px-8 py-3 border-b border-foreground/20 text-muted-foreground text-sm font-medium hover:text-foreground hover:border-foreground/40 transition-all uppercase tracking-widest"
             >
               More About Me →
             </a>
           </div>
 
           {/* Identity bar */}
-          <div className="pt-8 border-t border-white/15 w-full">
-            <h3 className="text-lg font-semibold text-white tracking-wide mb-1">ABHISHEK H S</h3>
-            <p className="text-xs font-mono text-gray-400 mb-4 tracking-widest uppercase">AI/ML Engineer · Full Stack Developer</p>
-            <div className="flex gap-3 text-[10px] font-mono text-gray-500 uppercase tracking-widest flex-wrap">
-              <span>Generative AI</span>
+          <div className="pt-8 border-t border-foreground/15 w-full">
+            <h3 className="text-lg font-semibold text-foreground tracking-wide mb-1">ABHISHEK H S</h3>
+            <p className="text-xs font-mono text-muted-foreground mb-4 tracking-widest uppercase">AI/ML Engineer · Full Stack Developer</p>
+            <div className="flex gap-3 text-[10px] font-mono text-muted-foreground/80 uppercase tracking-widest flex-wrap">
+              <span>Python</span>
+              <span className="text-amber-500/40">•</span>
+              <span>FastAPI</span>
+              <span className="text-amber-500/40">•</span>
+              <span>AI/ML</span>
               <span className="text-amber-500/40">•</span>
               <span>RAG</span>
-              <span className="text-amber-500/40">•</span>
-              <span>Computer Vision</span>
-              <span className="text-amber-500/40">•</span>
-              <span>Python</span>
               <span className="text-amber-500/40">•</span>
               <span>React</span>
             </div>
@@ -81,7 +79,7 @@ const HeroSection = () => {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground z-10"
       >
         <ArrowDown size={18} />
       </motion.div>

@@ -55,7 +55,7 @@ const ContactSection = () => {
             </p>
             <div className="flex gap-4 flex-wrap">
               <a
-                href="https://github.com/abhiahek143"
+                href="https://github.com/abhishekhs-23"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-amber-500 transition-colors border-b border-amber-500/30 pb-1"
@@ -80,13 +80,13 @@ const ContactSection = () => {
                 <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
-                <span className="ml-3 text-[10px] font-mono text-muted-foreground">github.com/abhiahek143</span>
+                <span className="ml-3 text-[10px] font-mono text-muted-foreground">github.com/abhishekhs-23</span>
               </div>
               <div className="p-6 space-y-5">
                 <div className="flex items-center gap-3">
                   <Github size={20} className="text-muted-foreground" />
                   <div>
-                    <p className="text-sm text-foreground font-medium">abhiahek143</p>
+                    <p className="text-sm text-foreground font-medium">abhishekhs-23</p>
                     <p className="text-xs text-muted-foreground">Abhishek H S · AI/ML Engineer</p>
                   </div>
                 </div>

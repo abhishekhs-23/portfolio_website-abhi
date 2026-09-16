@@ -5,11 +5,12 @@ export interface Message {
   id: string;
   role: 'user' | 'ai';
   content: string;
+  type?: 'text' | 'projects' | 'skills' | 'experience' | 'about';
 }
 
 export const useAbhiAI = (setAiState: (state: AIState) => void) => {
   const [messages, setMessages] = useState<Message[]>([
-    { id: '1', role: 'ai', content: "Hi, I'm Abhi's AI.\nAsk me anything about Abhi, his work, projects, skills, or experience." }
+    { id: '1', role: 'ai', content: "Hey, I’m Abhi AI.\nExplore Abhishek’s projects, skills, experience, and background.", type: 'text' }
   ]);
   const [isRecording, setIsRecording] = useState(false);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -59,7 +60,7 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
         currentAudioRef.current.pause();
       }
 
-      const response = await fetch('http://localhost:3001/api/ai/tts', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/ai/tts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
@@ -99,17 +100,33 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
     const newUserMsg: Message = { id: Date.now().toString(), role: 'user', content: text };
     const newMessages = [...messages, newUserMsg];
     setMessages(newMessages);
+
+    // Intercept structured quick actions
+    const lowerText = text.toLowerCase().trim();
+    if (['projects', 'skills', 'experience', 'about'].includes(lowerText)) {
+      setTimeout(() => {
+        setMessages(prev => [...prev, { 
+          id: Date.now().toString(), 
+          role: 'ai', 
+          content: `Here is information about my ${lowerText}:`, 
+          type: lowerText as 'projects' | 'skills' | 'experience' | 'about' 
+        }]);
+        setAiState('IDLE');
+      }, 500); // Small delay for realistic feel
+      return;
+    }
+
     setAiState('THINKING');
 
     try {
-      const response = await fetch('http://localhost:3001/api/ai/chat', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Send history excluding the system prompt (which backend handles)
         body: JSON.stringify({ 
           messages: newMessages.map(m => ({ 
             role: m.role === 'ai' ? 'assistant' : m.role, 
-            content: m.content === "Hi, I'm Abhi's AI.\nAsk me anything about Abhi, his work, projects, skills, or experience." ? "Hello" : m.content 
+            content: m.content === "Hey, I’m Abhi AI.\nExplore Abhishek’s projects, skills, experience, and background." ? "Hello" : m.content 
           })) 
         })
       });
@@ -166,7 +183,7 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
           formData.append('audio', audioBlob, 'audio.webm');
           
           try {
-            const response = await fetch('http://localhost:3001/api/ai/transcribe', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/ai/transcribe`, {
               method: 'POST',
               body: formData,
             });

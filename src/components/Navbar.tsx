@@ -38,11 +38,11 @@ const Navbar = () => {
 
   const navBg = isDark
     ? scrolled
-      ? "bg-[#050d1a]/95 border-white/10 shadow-2xl shadow-black/50"
-      : "bg-[#050d1a]/60 border-white/5"
+      ? "bg-background/95 border-border shadow-2xl shadow-black/50"
+      : "bg-background/60 border-border"
     : scrolled
-      ? "bg-[#f7f3ed]/95 border-amber-900/15 shadow-lg shadow-amber-900/10"
-      : "bg-[#f7f3ed]/70 border-amber-900/10";
+      ? "bg-background/95 border-border shadow-lg shadow-amber-900/10"
+      : "bg-background/70 border-border";
 
   return (
     <motion.nav
@@ -145,10 +145,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className={`md:hidden border-t rounded-b-2xl overflow-hidden backdrop-blur-xl ${isDark
-              ? "border-white/5 bg-[#050d1a]/95"
-              : "border-amber-900/10 bg-[#f7f3ed]/95"
-              }`}
+            className="md:hidden border-t border-border rounded-b-2xl overflow-hidden backdrop-blur-xl bg-background/95"
           >
             <div className="flex flex-col gap-3 p-5">
               {links.map((l) => (

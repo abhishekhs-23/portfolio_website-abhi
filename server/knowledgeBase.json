@@ -1,17 +1,436 @@
 {
-  "about": "My name is Abhi (Abhishek). I am a software developer passionate about building AI-powered web applications and modern user interfaces. I specialize in React, TypeScript, Node.js, and integrating AI models.",
+  "profile": {
+    "name": "Abhishek H S",
+    "headline": "AI/ML Engineer and Full Stack Developer",
+    "summary": "I am an AI/ML Engineer and Full Stack Developer focused on building practical AI-powered applications, backend systems, and modern web applications. I enjoy turning ideas into working software and exploring Generative AI, LLM applications, RAG systems, NLP, speech technologies, and intelligent web applications.",
+    "career_focus": [
+      "AI/ML Engineering",
+      "Python Development",
+      "Backend Development",
+      "Full Stack Development",
+      "Generative AI",
+      "LLM Applications",
+      "RAG Systems",
+      "NLP",
+      "AI-powered Applications"
+    ],
+    "professional_identity": [
+      "AI/ML Engineer",
+      "Full Stack Developer",
+      "Python Developer",
+      "Backend Developer"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.E. in Artificial Intelligence and Machine Learning",
+      "institution": "Sri Siddhartha Institute of Technology",
+      "location": "Tumakuru, Karnataka",
+      "period": "2022 – 2026"
+    },
+    {
+      "degree": "Pre-University Course (PCMB)",
+      "institution": "Gnanapriya PU College",
+      "period": "2020 – 2022"
+    },
+    {
+      "degree": "SSLC",
+      "institution": "Mount View Public School",
+      "period": "2019"
+    }
+  ],
+  "experience": [
+    {
+      "role": "AI Product Intern",
+      "company": "Innerverse Technologies",
+      "dates": "Feb 2026 – May 2026",
+      "summary": "Worked on AI-powered products involving LLM workflows, prompt engineering, speech-to-text, NLP, chatbot integration, REST APIs, data validation, testing, debugging, rapid prototyping, and feature development.",
+      "areas": [
+        "LLM workflows",
+        "Prompt Engineering",
+        "Speech-to-Text",
+        "NLP",
+        "AI Chatbots",
+        "REST APIs",
+        "Backend Development",
+        "API Integration",
+        "Database Operations",
+        "Data Annotation",
+        "Data Validation",
+        "AI Response Testing",
+        "Debugging",
+        "Rapid Prototyping",
+        "Feature Development",
+        "Git",
+        "Agile Development"
+      ]
+    }
+  ],
+  "major_project": {
+    "name": "Intellearn",
+    "title": "AI-Powered Teaching Platform",
+    "period": "Nov 2025 – May 2026",
+    "description": "An AI-powered teaching platform designed to transform lectures into structured and interactive learning experiences.",
+    "features": [
+      "Real-time speech-to-text",
+      "Live lecture captions",
+      "Multilingual translation",
+      "Lecture notes generation",
+      "Quiz generation",
+      "AI tutoring",
+      "RAG-based question answering",
+      "Interactive learning workflows",
+      "PDF generation",
+      "PPT generation"
+    ],
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "React",
+      "Vite",
+      "RAG",
+      "LLMs",
+      "Whisper",
+      "Deepgram",
+      "LiveKit WebRTC",
+      "Supabase",
+      "Docker",
+      "REST APIs",
+      "WebSockets"
+    ],
+    "ai_technologies": [
+      "Speech-to-Text",
+      "Whisper",
+      "LLM Integration",
+      "LLaMA",
+      "RAG",
+      "NLP",
+      "Translation",
+      "AI Tutoring"
+    ],
+    "github": "https://github.com/abhishekhs-23/intellearn._.ai_powered_interactive_teaching_assistant"
+  },
   "projects": [
     {
       "name": "Intellearn",
-      "description": "An AI-powered education platform designed to transform lectures into structured learning material and interactive learning experiences. Technologies used include React, Node.js, and LLMs."
+      "title": "AI-Powered Teaching Platform",
+      "description": "An AI-powered teaching platform that combines real-time speech-to-text, multilingual learning support, lecture notes, quiz generation, and RAG-based AI tutoring.",
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "React",
+        "RAG",
+        "LLMs",
+        "Whisper",
+        "Supabase",
+        "Docker"
+      ],
+      "github": "https://github.com/abhishekhs-23/intellearn._.ai_powered_interactive_teaching_assistant"
     },
     {
-      "name": "Abhi AI",
-      "description": "An interactive digital representation of me built directly into my portfolio website, allowing visitors to ask questions about my experience using text or voice."
+      "name": "Study Help",
+      "title": "AI Study Assistant",
+      "description": "An AI-powered study application designed to help students understand topics, learn concepts, and get interactive study assistance.",
+      "github": "https://github.com/abhishekhs-23/study-help"
+    },
+    {
+      "name": "English Learn",
+      "title": "English Learning Platform",
+      "description": "An interactive English learning application designed to help users improve their English through structured learning and practice.",
+      "github": "https://github.com/abhishekhs-23/abhi-s-english-learn-application"
+    },
+    {
+      "name": "E-Commerce Platform",
+      "title": "Full-Stack E-Commerce Application",
+      "description": "A full-stack e-commerce application with authentication, REST APIs, database integration, product management, and order management.",
+      "technologies": [
+        "Python",
+        "Flask",
+        "MySQL",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "features": [
+        "User authentication",
+        "Product management",
+        "Order management",
+        "REST APIs",
+        "Database integration"
+      ],
+      "github": "https://github.com/abhishekhs-23/e-commerce-website"
+    },
+    {
+      "name": "Weather Forecast Website",
+      "title": "Weather Forecast Application",
+      "description": "A responsive weather application using external REST APIs with location search, live weather information, and a responsive dashboard.",
+      "technologies": [
+        "Python",
+        "REST APIs",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "features": [
+        "Location search",
+        "Live weather information",
+        "External API integration",
+        "Responsive dashboard"
+      ],
+      "github": "https://github.com/abhishekhs-23/weather"
     }
   ],
-  "experience": "I have experience working on full-stack web applications, integrating modern APIs, and designing premium user interfaces. I continuously explore new technologies, particularly in the AI/ML space.",
-  "skills": ["React", "TypeScript", "Node.js", "Tailwind CSS", "Framer Motion", "Supabase", "AI/ML Integration", "Python"],
-  "education": "I am constantly learning and exploring new technologies in computer science and software engineering.",
-  "contact": "You can reach out to me via the contact form on my portfolio or connect with me on LinkedIn and GitHub."
+  "technical_skills": {
+    "programming_languages": [
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
+      "HTML",
+      "CSS"
+    ],
+    "ai_and_machine_learning": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Generative AI",
+      "Large Language Models",
+      "LLMs",
+      "RAG",
+      "NLP",
+      "Prompt Engineering",
+      "AI Workflow Automation"
+    ],
+    "speech_and_ai": [
+      "Speech-to-Text",
+      "Automatic Speech Recognition",
+      "Whisper",
+      "Deepgram",
+      "Voice AI"
+    ],
+    "backend": [
+      "Python",
+      "FastAPI",
+      "Flask",
+      "REST APIs",
+      "API Development",
+      "API Integration",
+      "CRUD Operations",
+      "Authentication",
+      "Backend Development"
+    ],
+    "frontend": [
+      "React",
+      "React.js",
+      "Vite",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind CSS",
+      "Responsive UI Development"
+    ],
+    "databases": [
+      "SQL",
+      "MySQL",
+      "PostgreSQL",
+      "Supabase",
+      "Database Integration"
+    ],
+    "real_time": [
+      "LiveKit WebRTC",
+      "WebRTC",
+      "WebSockets",
+      "Real-Time Audio Streaming",
+      "Live Captioning"
+    ],
+    "tools_and_development": [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Vercel",
+      "VS Code"
+    ],
+    "computer_vision": [
+      "Computer Vision",
+      "OpenCV"
+    ]
+  },
+  "ai_models_and_services": {
+    "language_models": [
+      "LLaMA 3.3 70B",
+      "Qwen"
+    ],
+    "speech_models": [
+      "Whisper",
+      "Deepgram Nova-3"
+    ],
+    "ai_services": [
+      "Groq API",
+      "OpenAI API",
+      "Deepgram API"
+    ],
+    "computer_vision": [
+      "Grounding DINO",
+      "SAM2"
+    ]
+  },
+  "certifications": [
+    {
+      "name": "Artificial Intelligence Course",
+      "provider": "Adverk",
+      "year": "2023"
+    },
+    {
+      "name": "HTML Certification",
+      "year": "2024"
+    },
+    {
+      "name": "Oracle Database Course",
+      "year": "2024"
+    },
+    {
+      "name": "Introduction to Intellectual Property",
+      "provider": "NPTEL",
+      "year": "2025"
+    },
+    {
+      "name": "Computer Vision Using Python",
+      "year": "2025"
+    }
+  ],
+  "achievements": [
+    {
+      "achievement": "2nd Place – Robo Race Competition",
+      "year": "2022"
+    },
+    {
+      "achievement": "National Level Project Competition – Line Follower Bot",
+      "year": "2023"
+    },
+    {
+      "achievement": "Inspire Award – Agriculture Fertilizer Spraying Drone",
+      "level": "District Level",
+      "year": "2020"
+    }
+  ],
+  "research_interests": [
+    "Generative AI",
+    "Large Language Models",
+    "RAG Systems",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Natural Language Processing",
+    "Speech AI",
+    "Voice AI",
+    "AI-powered Applications",
+    "Backend Engineering",
+    "Human-Computer Interaction"
+  ],
+  "development_interests": [
+    "AI-powered applications",
+    "Backend systems",
+    "Full-stack web applications",
+    "LLM applications",
+    "RAG systems",
+    "AI automation",
+    "Speech technologies",
+    "Modern web development"
+  ],
+  "career_preferences": {
+    "primary_roles": [
+      "Python Developer",
+      "Backend Developer",
+      "Software Engineer",
+      "Associate Software Engineer"
+    ],
+    "secondary_roles": [
+      "Full Stack Developer",
+      "AI Engineer",
+      "ML Engineer"
+    ],
+    "preferred_technical_areas": [
+      "Python",
+      "Backend Development",
+      "REST APIs",
+      "SQL",
+      "AI/ML",
+      "Generative AI",
+      "LLMs",
+      "RAG",
+      "React"
+    ]
+  },
+  "portfolio": {
+    "featured_projects_count": 5,
+    "featured_projects": [
+      "Intellearn",
+      "Study Help",
+      "English Learn",
+      "E-Commerce Platform",
+      "Weather Forecast Website"
+    ],
+    "github": "https://github.com/abhishekhs-23",
+    "linkedin": "https://www.linkedin.com/in/abhishek-h-s-9173a541b/"
+  },
+  "contact": {
+    "message": "Visitors can use the portfolio contact section or connect through the available professional profile links."
+  },
+  "open_source": {
+    "description": "I use GitHub to document my projects, experiments, development work, and continuous learning across AI, backend development, and web applications."
+  },
+  "strengths": [
+    "Building practical AI applications",
+    "Python development",
+    "Backend API development",
+    "LLM integration",
+    "RAG implementation",
+    "AI workflow development",
+    "Rapid prototyping",
+    "Debugging",
+    "Testing",
+    "API integration",
+    "Learning new technologies",
+    "Combining AI with modern web applications"
+  ],
+  "about_style": {
+    "short": "I’m an AI/ML Engineer and Full Stack Developer who enjoys turning ideas into working software.",
+    "medium": "I build practical AI-powered applications and modern software using Python, FastAPI, React, SQL, Generative AI, LLMs, RAG, and NLP.",
+    "long": "My work sits at the intersection of AI and software engineering. I enjoy building applications that combine intelligent AI systems with reliable backend services and intuitive user interfaces. My interests include Generative AI, LLM applications, RAG systems, NLP, speech technologies, backend development, and full-stack engineering."
+  },
+  "boundaries": {
+    "scope": "Abhi AI is a portfolio assistant focused on Abhishek's professional profile, education, experience, projects, skills, certifications, achievements, interests, and career background.",
+    "allowed_topics": [
+      "About Abhishek",
+      "Projects",
+      "Project technologies",
+      "Project GitHub repositories",
+      "Skills",
+      "Internship",
+      "Experience",
+      "Education",
+      "Certifications",
+      "Achievements",
+      "Research interests",
+      "Career interests",
+      "Professional profiles"
+    ],
+    "fallback": "I'm focused on Abhishek's portfolio, projects, skills, experience, education, and professional background. Try asking me about his projects, skills, internship, education, or experience.",
+    "unknown_information": "If information is not present in the portfolio knowledge base, do not invent an answer. Clearly say that the information is not available in the portfolio.",
+    "no_hallucination": true
+  },
+  "response_guidelines": {
+    "tone": "Professional, concise, friendly, and natural.",
+    "avoid": [
+      "Long unnecessary paragraphs",
+      "Inventing project features",
+      "Inventing technologies",
+      "Inventing experience",
+      "Inventing certifications",
+      "Inventing achievements",
+      "Repeating the same information unnecessarily"
+    ],
+    "project_behavior": "When the user asks about projects, prefer structured project cards instead of a long text response.",
+    "skills_behavior": "When the user asks about skills, group them by category.",
+    "experience_behavior": "When the user asks about experience, show the internship role, company, dates, and concise responsibilities.",
+    "about_behavior": "When the user asks about Abhishek, provide a concise professional introduction.",
+    "unrelated_question_behavior": "For unrelated questions, politely explain that Abhi AI is a portfolio assistant and redirect the visitor toward relevant portfolio topics."
+  }
 }

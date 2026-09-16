@@ -3,26 +3,30 @@ import SectionWrapper from "./SectionWrapper";
 
 const categories = [
   {
-    title: "Programming Languages",
-    skills: ["Python", "Java", "SQL", "HTML/CSS", "JavaScript", "TypeScript"],
+    title: "Programming",
+    skills: ["Python", "SQL", "JavaScript", "TypeScript", "HTML", "CSS"],
   },
   {
-    title: "AI & Machine Learning",
-    skills: ["Machine Learning", "Artificial Intelligence", "Computer Vision (OpenCV)", "Data Analytics", "NLP", "RAG"],
+    title: "AI & ML",
+    skills: ["AI/ML", "Generative AI", "LLMs", "RAG", "NLP", "Computer Vision", "Speech-to-Text"],
   },
   {
-    title: "Web Development",
-    skills: ["React / Next.js", "Node.js / Express", "TailwindCSS", "Full Stack Development", "Three.js", "REST APIs"],
+    title: "Backend",
+    skills: ["FastAPI", "Flask", "REST APIs", "API Integration", "CRUD", "Authentication"],
   },
   {
-    title: "Tools & Databases",
-    skills: ["VS Code", "Google Colab", "MySQL", "MongoDB", "Git & GitHub", "Docker"],
+    title: "Web",
+    skills: ["React", "Vite", "Tailwind CSS", "Full Stack Development", "Responsive UI"],
   },
+  {
+    title: "Database & Tools",
+    skills: ["MySQL", "PostgreSQL", "Supabase", "Git", "GitHub", "Docker", "Vercel"],
+  }
 ];
 
 const SkillsSection = () => (
   <SectionWrapper id="skills" title="Skills" subtitle="Tools and technologies powering my work.">
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       {categories.map((cat, ci) => (
         <motion.div
           key={cat.title}

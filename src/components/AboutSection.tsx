@@ -9,7 +9,7 @@ const SkillsOrb = lazy(() => import("./SkillsOrb"));
 const PROFILE_IMG = "/abhi-dp.png";
 
 const AboutSection = () => (
-  <SectionWrapper id="about" title="About" subtitle="Exploring the space between people and systems.">
+  <SectionWrapper id="about" title="About" subtitle="Building at the intersection of AI and software.">
     <div className="relative max-w-6xl mx-auto space-y-28">
 
       {/* ── FIRST SCROLL: Portrait + Narrative ── */}
@@ -24,19 +24,16 @@ const AboutSection = () => (
           className="lg:col-span-5"
         >
           <div className="sticky top-32">
-            <div className="aspect-[3/4] overflow-hidden border border-foreground/8 relative group shadow-2xl shadow-black/30">
-              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/5 transition-colors duration-700 z-10" />
-              <img
-                src={PROFILE_IMG}
-                alt="Abhishek H S"
-                className="w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-100"
-              />
-              <div className="absolute bottom-5 left-5 z-20">
-                <p className="text-[10px] font-mono text-white/50 tracking-widest uppercase mb-1">Status</p>
-                <p className="text-xs text-white tracking-widest uppercase flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Building
-                </p>
+            <div className="aspect-[3/4] overflow-hidden rounded-2xl border border-foreground/10 relative group shadow-2xl shadow-amber-500/5 bg-foreground/5 p-2">
+              <div className="w-full h-full rounded-xl overflow-hidden relative">
+                <div className="absolute inset-0 bg-foreground/5 group-hover:bg-transparent transition-colors duration-700 z-10" />
+                <img
+                  src={PROFILE_IMG}
+                  alt="Abhishek H S"
+                  className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-100"
+                />
               </div>
+
             </div>
           </div>
         </motion.div>
@@ -52,41 +49,34 @@ const AboutSection = () => (
           <section className="space-y-4">
             <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase border-b border-foreground/10 pb-3">Who I Am</h3>
             <p className="text-2xl md:text-3xl font-serif text-foreground/95 leading-relaxed">
-              I am an AI/ML Engineer with a deep passion for artificial intelligence,
-              machine learning, and modern web technologies.
+              I’m Abhishek H S, an AI/ML Engineer and Full Stack Developer who enjoys turning ideas into working software.
             </p>
             <p className="text-base text-muted-foreground leading-relaxed font-light">
-              Currently pursuing my B.E. in AI & ML at Sri Siddhartha Institute of Technology, Tumakuru.
-              I view software engineering not just as writing code — but as crafting intelligent systems
-              that interact smoothly with the real world.
+              My work combines Python, FastAPI, React, SQL, Generative AI, RAG, NLP, and modern web technologies.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase border-b border-foreground/10 pb-3">What I Explore</h3>
             <p className="text-base text-muted-foreground leading-relaxed font-light">
-              My curiosity lives at the intersection of Generative AI, computer vision, and high-performance
-              backend architecture. I experiment with RAG pipelines, real-time speech translation, and pushing
-              the limits of what browser-based interfaces can do.
+              I explore Generative AI, LLM applications, RAG systems, NLP, speech technologies, backend development, and intelligent web applications.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase border-b border-foreground/10 pb-3">What I Build</h3>
             <p className="text-base text-muted-foreground leading-relaxed font-light">
-              From real-time hand gesture recognition to AI-powered teaching assistants — I build interactive,
-              intelligent experiences that bridge complex ML models with intuitive human-computer interaction.
+              I build practical applications that combine AI with intuitive user experiences—from learning platforms and study tools to full-stack web applications.
             </p>
           </section>
 
           <section className="space-y-4">
             <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase border-b border-foreground/10 pb-3">Why I Build It</h3>
             <p className="text-2xl font-serif text-foreground italic leading-relaxed">
-              "To create ideas that turn into impact."
+              "Build useful things. Learn from every iteration."
             </p>
             <p className="text-base text-muted-foreground leading-relaxed font-light">
-              Technology is most powerful when it empowers others. Whether it's Intellearn or LiFi data
-              transmission — my goal is to architect solutions that solve real problems and build a better tomorrow.
+              I believe every project is an opportunity to solve a problem, learn something new, and become a better engineer.
             </p>
           </section>
         </motion.div>
@@ -144,10 +134,10 @@ const AboutSection = () => (
             <h3 className="text-xs font-mono text-amber-500 tracking-widest uppercase mb-6 border-b border-foreground/10 pb-3">By the Numbers</h3>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { num: "10+", label: "Projects Built" },
+                { num: "5+", label: "Projects Built" },
                 { num: "5+", label: "Certifications" },
-                { num: "3", label: "Hackathons" },
-                { num: "2+", label: "Internships" },
+                { num: "1", label: "AI Product Internship" },
+                { num: "2022-26", label: "Engineering Journey" },
               ].map(({ num, label }) => (
                 <div key={label} className="border border-foreground/8 bg-foreground/[0.02] p-5">
                   <p className="text-3xl font-serif text-foreground mb-1">{num}</p>

@@ -6,33 +6,31 @@ const experiences = [
   {
     role: "AI Product Intern",
     company: "Innerverse Technologies",
-    desc: "Contributed to AI product development and integration. Explored practical applications of generative models to improve internal tools and user-facing features.",
-    period: "Recent",
-  },
-  {
-    role: "AI Research Intern",
-    company: "Tech AI Lab",
-    desc: "Developed computer vision models for object detection. Improved model accuracy by 15% through data augmentation and transfer learning techniques.",
-    period: "June 2025 – Aug 2025",
-  },
+    desc: "Worked on AI-powered products involving LLM workflows, prompt engineering, speech-to-text, NLP, chatbot integration, and REST APIs. Contributed to data validation, AI response testing, debugging, rapid prototyping, and feature development across 3 live projects.",
+    period: "Feb 2026 – May 2026",
+  }
 ];
 
 const interests = [
-  "Artificial Intelligence",
-  "Machine Learning",
-  "Computer Vision",
   "Generative AI",
-  "Web Development",
+  "LLM Applications",
+  "RAG Systems",
+  "AI/ML",
+  "NLP",
+  "Speech AI",
+  "Backend Engineering",
   "Human-Computer Interaction",
 ];
 
 const achievements = [
-  "2nd Place – Robo Race Competition (2022)",
-  "National Level Project Competition – Line Follower Bot (2023)",
-  "Inspire Award (District Level) – Agriculture Fertilizer Spraying Drone (2020)",
+  "2nd Place — Robo Race Competition (2022)",
+  "National Level Project Competition — Line Follower Bot (2023)",
+  "Inspire Award — Agriculture Fertilizer Spraying Drone (District Level, 2020)",
+  "Artificial Intelligence Course — Adverk (2023)",
+  "NPTEL — Introduction to Intellectual Property (2025)",
   "Computer Vision Using Python (2025)",
-  "NPTEL – Introduction to Intellectual Property (2025)",
-  "HTML Certification & Oracle Database Course (2024)",
+  "HTML Certification (2024)",
+  "Oracle Database Course (2024)",
 ];
 
 const ExperienceSection = () => (

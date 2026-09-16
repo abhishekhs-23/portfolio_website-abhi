@@ -3,6 +3,10 @@ import { X, Send, Mic, Loader2, Volume2 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { AIState } from './AbhiAIRobot';
 import { Message } from '../../hooks/useAbhiAI';
+import { ProjectsResponse } from './responses/ProjectsResponse';
+import { SkillsResponse } from './responses/SkillsResponse';
+import { ExperienceResponse } from './responses/ExperienceResponse';
+import { AboutResponse } from './responses/AboutResponse';
 
 interface AbhiAIPanelProps {
   isDark: boolean;
@@ -15,12 +19,11 @@ interface AbhiAIPanelProps {
   isRecording: boolean;
 }
 
-const suggestedQuestions = [
-  "Who is Abhi?",
-  "Tell me about his projects.",
-  "What is Intellearn?",
-  "What are his technical skills?",
-  "Tell me about his experience."
+const quickActions = [
+  "Projects",
+  "Skills",
+  "Experience",
+  "About"
 ];
 
 const AbhiAIPanel = ({ isDark, onClose, aiState, setAiState, messages, sendMessage, toggleRecording, isRecording }: AbhiAIPanelProps) => {
@@ -69,7 +72,10 @@ const AbhiAIPanel = ({ isDark, onClose, aiState, setAiState, messages, sendMessa
       <div className={`p-4 border-b flex justify-between items-center ${isDark ? "border-white/10" : "border-gray-200"}`}>
         <div className="flex items-center gap-2">
            <div className={`w-2 h-2 rounded-full ${isDark ? "bg-amber-400" : "bg-amber-600"} animate-pulse`} />
-           <span className={`text-xs font-mono tracking-widest uppercase ${textPrimary}`}>Abhi AI</span>
+           <div className="flex flex-col">
+             <span className={`text-xs font-bold font-mono tracking-widest uppercase leading-none ${textPrimary}`}>Abhi AI</span>
+             <span className={`text-[9px] font-mono tracking-wider uppercase mt-1 ${textSecondary}`}>Portfolio Assistant</span>
+           </div>
         </div>
         <button onClick={onClose} className={`${textSecondary} hover:text-amber-500 transition-colors`}>
           <X size={16} />
@@ -80,17 +86,22 @@ const AbhiAIPanel = ({ isDark, onClose, aiState, setAiState, messages, sendMessa
       <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin">
         {messages.map(m => (
           <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm whitespace-pre-line ${m.role === 'user' ? msgUserBg + ' rounded-tr-sm' : msgAiBg + ' rounded-tl-sm'}`}>
+            <div className={`max-w-[90%] rounded-2xl px-4 py-2.5 text-sm whitespace-pre-line shadow-sm ${m.role === 'user' ? msgUserBg + ' rounded-tr-sm' : msgAiBg + ' rounded-tl-sm'}`}>
               {m.content}
+              {m.type === 'projects' && <ProjectsResponse isDark={isDark} />}
+              {m.type === 'skills' && <SkillsResponse isDark={isDark} />}
+              {m.type === 'experience' && <ExperienceResponse isDark={isDark} />}
+              {m.type === 'about' && <AboutResponse isDark={isDark} />}
             </div>
           </div>
         ))}
         
         {aiState === 'THINKING' && (
            <div className="flex justify-start">
-             <div className={`max-w-[85%] rounded-2xl rounded-tl-sm px-4 py-3 text-sm flex items-center gap-2 ${msgAiBg}`}>
-               <Loader2 size={14} className="animate-spin text-amber-500" />
-               <span className="text-xs text-gray-500">Thinking...</span>
+             <div className={`max-w-[85%] rounded-2xl rounded-tl-sm px-4 py-3 flex items-center gap-1.5 ${msgAiBg}`}>
+               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-bounce" style={{ animationDelay: '0ms' }} />
+               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-bounce" style={{ animationDelay: '150ms' }} />
+               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-bounce" style={{ animationDelay: '300ms' }} />
              </div>
            </div>
         )}
@@ -105,16 +116,16 @@ const AbhiAIPanel = ({ isDark, onClose, aiState, setAiState, messages, sendMessa
         )}
 
         {messages.length === 1 && (
-          <div className="flex flex-wrap gap-2 mt-4">
-            {suggestedQuestions.map((q, i) => (
+          <div className="flex flex-wrap gap-2 mt-4 pb-2">
+            {quickActions.map((action, i) => (
               <button 
                 key={i}
-                onClick={() => handleSend(q)}
-                className={`text-[10px] px-3 py-1.5 rounded-full border transition-colors text-left
-                  ${isDark ? "border-amber-500/30 text-amber-400 hover:bg-amber-500/10" : "border-amber-600/30 text-amber-700 hover:bg-amber-50"}
+                onClick={() => handleSend(action)}
+                className={`text-[11px] font-medium px-4 py-2 rounded-full border transition-all hover:scale-105 active:scale-95 shadow-sm
+                  ${isDark ? "border-amber-500/30 text-amber-400 bg-amber-500/5 hover:bg-amber-500/20" : "border-amber-600/30 text-amber-700 bg-amber-50 hover:bg-amber-100"}
                 `}
               >
-                {q}
+                {action}
               </button>
             ))}
           </div>
@@ -140,7 +151,7 @@ const AbhiAIPanel = ({ isDark, onClose, aiState, setAiState, messages, sendMessa
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
-            placeholder={aiState === 'LISTENING' ? "Listening..." : "Ask me anything..."}
+            placeholder={aiState === 'LISTENING' ? "Listening..." : "Ask Abhi AI anything..."}
             className={`flex-1 bg-transparent border-none outline-none px-2 text-sm ${textPrimary} placeholder:text-gray-500`}
             disabled={aiState === 'LISTENING' || aiState === 'THINKING' || aiState === 'SPEAKING'}
           />

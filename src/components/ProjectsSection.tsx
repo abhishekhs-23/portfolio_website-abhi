@@ -3,37 +3,51 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
 import { Github, Sparkles, ChevronRight, Mic, Languages, Brain, FileText, Database, Bot } from "lucide-react";
 
-const filters = ["All", "AI / ML", "Web", "Computer Vision"];
+const filters = ["All", "AI / ML", "Web", "Computer Vision", "Hardware"];
 
 const projects = [
   {
-    title: "Weather Forecast Web Application",
-    desc: "A responsive weather forecasting web application that displays current weather conditions, a 5-day forecast with interactive charts, location-based weather detection, and search history.",
-    tags: ["React", "OpenWeather API", "Chart.js", "TailwindCSS"],
-    category: "Web",
-    github: "https://github.com/abhiahek143/weather",
-  },
-  {
-    title: "Air Drawing Using Hand Gesture Recognition",
-    desc: "Developed a real-time interactive drawing system using hand gesture recognition. Implemented colour selection, eraser mode, and two-hand gesture control.",
-    tags: ["Python", "OpenCV", "MediaPipe", "NumPy"],
-    category: "Computer Vision",
-    github: "#",
-  },
-  {
-    title: "LiFi and Chatbot",
-    desc: "Designed a data transmission system using light as the communication medium. Successfully transferred data between two communicable devices.",
-    tags: ["Arduino Uno", "Light Source", "Embedded Systems"],
+    title: "Intellearn",
+    desc: "AI-powered teaching platform with real-time speech-to-text, multilingual translation, lecture notes, quiz generation, and RAG-based AI tutoring.",
+    tags: ["Python", "FastAPI", "RAG", "LLMs", "Whisper", "React", "Supabase", "Docker"],
     category: "AI / ML",
-    github: "#",
+    github: "https://github.com/abhishekhs-23/intellearn._.ai_powered_interactive_teaching_assistant",
   },
   {
-    title: "My Portfolio Website",
-    desc: "A modern personal portfolio with 3D WebGL background, cinematic design, and smooth animations.",
-    tags: ["React", "Three.js", "TailwindCSS"],
-    category: "Web",
-    github: "#",
+    title: "Study Help",
+    desc: "An AI-powered study application designed to help students understand topics, learn concepts, and get interactive study assistance.",
+    tags: ["Python", "AI/ML", "LLM", "NLP", "React"],
+    category: "AI / ML",
+    github: "https://github.com/abhishekhs-23/study-help",
   },
+  {
+    title: "English Learn",
+    desc: "An interactive learning platform designed to help users improve their English through structured learning and practice.",
+    tags: ["React", "JavaScript", "AI", "NLP"],
+    category: "Web",
+    github: "https://github.com/abhishekhs-23/abhi-s-english-learn-application",
+  },
+  {
+    title: "E-Commerce Platform",
+    desc: "Full-stack e-commerce application with product management, authentication, REST APIs, database integration, and order management.",
+    tags: ["Python", "Flask", "MySQL", "JavaScript"],
+    category: "Web",
+    github: "https://github.com/abhishekhs-23/e-commerce-website",
+  },
+  {
+    title: "Weather Forecast Website",
+    desc: "Weather application using external APIs with location search, live weather information, and a responsive dashboard.",
+    tags: ["Python", "REST APIs", "JavaScript", "HTML", "CSS"],
+    category: "Web",
+    github: "https://github.com/abhishekhs-23/weather",
+  },
+  {
+    title: "LiFi Data Transmission System",
+    desc: "Designed a wireless communication system using light as the transmission medium to successfully transfer data between communicable devices.",
+    tags: ["Arduino Uno", "Embedded Systems", "Hardware"],
+    category: "Hardware",
+    github: "#",
+  }
 ];
 
 // IntelLearn pipeline steps
@@ -69,20 +83,20 @@ const ProjectsSection = () => {
                   Intellearn
                 </h3>
                 <p className="text-sm text-amber-500/60 font-mono uppercase tracking-widest">
-                  AI-Powered Interactive Teaching Assistant
+                  AI-Powered Teaching Platform
                 </p>
                 <p className="text-muted-foreground leading-relaxed font-light">
-                  An AI-based classroom assistant with real-time speech-to-text captions, multilingual translation, automatic lecture note generation, and context-aware doubt solving using Retrieval-Augmented Generation (RAG).
+                  AI-powered teaching platform with real-time speech-to-text, multilingual translation, lecture notes, quiz generation, and RAG-based AI tutoring.
                 </p>
 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {["Python", "NLP", "RAG", "Speech-to-Text", "LLMs", "Whisper"].map(t => (
+                  {["Python", "FastAPI", "RAG", "LLMs", "Whisper", "React", "Supabase", "Docker"].map(t => (
                     <span key={t} className="text-[10px] font-mono px-2.5 py-1 border border-foreground/10 text-muted-foreground uppercase tracking-wider">{t}</span>
                   ))}
                 </div>
 
                 <div className="pt-4">
-                  <a href="#" className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-amber-500 transition-colors border-b border-amber-500/30 pb-1">
+                  <a href="https://github.com/abhishekhs-23/intellearn._.ai_powered_interactive_teaching_assistant" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-amber-500 transition-colors border-b border-amber-500/30 pb-1">
                     <Github size={14} /> View Source Code
                   </a>
                 </div>
@@ -161,11 +175,13 @@ const ProjectsSection = () => {
                   </span>
                 ))}
               </div>
-              <div className="pt-4 border-t border-foreground/10">
-                <a href={p.github} className="text-muted-foreground hover:text-foreground/80 transition-colors flex items-center gap-2 text-xs font-mono uppercase tracking-widest">
-                  <Github size={13} /> Repository
-                </a>
-              </div>
+              {p.github !== "#" && (
+                <div className="pt-4 border-t border-foreground/10">
+                  <a href={p.github} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground/80 transition-colors flex items-center gap-2 text-xs font-mono uppercase tracking-widest">
+                    <Github size={13} /> Repository
+                  </a>
+                </div>
+              )}
             </motion.div>
           ))}
         </AnimatePresence>
