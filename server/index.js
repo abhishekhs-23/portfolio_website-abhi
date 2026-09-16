@@ -28,10 +28,21 @@ const upload = multer({ dest: os.tmpdir() });
 app.use(cors());
 app.use(express.json());
 
-// Load Knowledge Base
-const knowledgeBase = JSON.parse(
-  fs.readFileSync(path.join(__dirname, 'knowledgeBase.json'), 'utf-8')
-);
+let knowledgeBase = {};
+try {
+  knowledgeBase = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), 'server', 'knowledgeBase.json'), 'utf-8')
+  );
+} catch (e) {
+  console.warn("Could not load knowledgeBase.json via process.cwd(), falling back to __dirname");
+  try {
+    knowledgeBase = JSON.parse(
+      fs.readFileSync(path.join(__dirname, 'knowledgeBase.json'), 'utf-8')
+    );
+  } catch (e2) {
+    console.error("Failed to load knowledgeBase.json completely:", e2);
+  }
+}
 
 const SYSTEM_PROMPT = `You are "Abhi AI", the interactive digital representation of Abhi (Abhishek), an AI-powered portfolio assistant.
 Your goal is to answer questions about Abhi professionally, naturally, and concisely based ONLY on the provided context.
@@ -82,7 +93,7 @@ app.post('/api/ai/chat', async (req, res) => {
     res.json({ response: aiResponse });
   } catch (error) {
     console.error('Groq LLM error:', error);
-    res.status(500).json({ error: 'Failed to process chat' });
+    res.status(500).json({ error: 'Failed to process chat', details: error.message || error.toString() });
   }
 });
 
@@ -111,7 +122,7 @@ app.post('/api/ai/transcribe', upload.single('audio'), async (req, res) => {
       if (fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
       if (fs.existsSync(req.file.path + '.webm')) fs.unlinkSync(req.file.path + '.webm');
     }
-    res.status(500).json({ error: 'Failed to transcribe audio' });
+    res.status(500).json({ error: 'Failed to transcribe audio', details: error.message || error.toString() });
   }
 });
 
@@ -155,7 +166,7 @@ app.post('/api/ai/tts', async (req, res) => {
     res.send(Buffer.from(audioBuffer));
   } catch (error) {
     console.error('Groq TTS error:', error);
-    res.status(500).json({ error: 'Failed to generate speech' });
+    res.status(500).json({ error: 'Failed to generate speech', details: error.message || error.toString() });
   }
 });
 
