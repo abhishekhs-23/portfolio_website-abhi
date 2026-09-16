@@ -10,7 +10,7 @@ const PROFILE_IMG = "/abhi-dp.png";
 
 const AboutSection = () => (
   <SectionWrapper id="about" title="About" subtitle="Building at the intersection of AI and software.">
-    <div className="relative max-w-6xl mx-auto space-y-28">
+    <div className="relative max-w-6xl mx-auto space-y-16 md:space-y-28">
 
       {/* ── FIRST SCROLL: Portrait + Narrative ── */}
       <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
@@ -100,7 +100,7 @@ const AboutSection = () => (
             My core technologies as an interactive 3D constellation. Drag to explore.
           </p>
           <Suspense fallback={
-            <div className="w-full h-[420px] flex items-center justify-center border border-foreground/5 rounded-2xl">
+            <div className="w-full h-[420px] md:h-[520px] flex items-center justify-center border border-foreground/5 rounded-2xl">
               <p className="text-xs font-mono text-muted-foreground animate-pulse">Loading 3D...</p>
             </div>
           }>

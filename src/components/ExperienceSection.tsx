@@ -37,9 +37,9 @@ const ExperienceSection = () => (
   <SectionWrapper id="experience" title="Experience" subtitle="Learning, growing, and building.">
     <div className="grid lg:grid-cols-3 gap-16 relative">
       {/* Left: Experience Timeline + Interests */}
-      <div className="lg:col-span-2 space-y-14">
+      <div className="lg:col-span-2 space-y-10 md:space-y-14">
         {/* Timeline */}
-        <div className="relative border-l border-foreground/12 ml-3 space-y-12">
+        <div className="relative border-l border-foreground/12 ml-3 space-y-8 md:space-y-12">
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.role}

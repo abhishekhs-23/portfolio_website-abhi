@@ -118,7 +118,7 @@ const ContactSection = () => {
       {/* Contact Section */}
       <SectionWrapper id="contact" title="Contact" subtitle="Let's build something real.">
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}

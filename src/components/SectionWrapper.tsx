@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SectionWrapper = ({ id, title, subtitle, children, className = "" }: Props) => (
-  <section id={id} className={`py-24 px-6 ${className}`}>
+  <section id={id} className={`py-16 md:py-24 px-5 md:px-6 ${className}`}>
     <div className="container mx-auto max-w-6xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
