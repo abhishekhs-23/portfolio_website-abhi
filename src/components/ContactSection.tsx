@@ -63,7 +63,7 @@ const ContactSection = () => {
                 <Github size={14} /> GitHub Profile →
               </a>
               <a
-                href="https://www.linkedin.com/in/abhishek-h-s-6589ab304/"
+                href="https://www.linkedin.com/in/er-abhishek-h-s-9173a541b/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-amber-500 transition-colors border-b border-amber-500/30 pb-1"

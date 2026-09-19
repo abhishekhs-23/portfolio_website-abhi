@@ -10,8 +10,8 @@ const Footer = () => (
       </div>
       <div className="flex items-center gap-3">
         {[
-          { icon: Github, href: "https://github.com/abhiahek143", label: "GitHub" },
-          { icon: Linkedin, href: "https://www.linkedin.com/in/abhishek-h-s-6589ab304/", label: "LinkedIn" },
+          { icon: Github, href: "https://github.com/abhishekhs-23", label: "GitHub" },
+          { icon: Linkedin, href: "https://www.linkedin.com/in/er-abhishek-h-s-9173a541b/", label: "LinkedIn" },
           { icon: Mail, href: "mailto:abhishekhs0217@gmail.com", label: "Email" },
         ].map(({ icon: Icon, href, label }) => (
           <a
