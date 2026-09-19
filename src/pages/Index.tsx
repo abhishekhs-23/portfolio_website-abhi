@@ -24,7 +24,7 @@ const PortfolioContent = () => {
       <div
         className="fixed inset-0 z-0 pointer-events-none three-canvas transition-opacity duration-700"
         aria-hidden="true"
-        style={{ opacity: isDark ? 1 : 0.08 }}
+        style={{ opacity: isDark ? 1 : 0.20 }}
       >
         <Canvas dpr={[1, 1.5]} gl={{ antialias: true, alpha: true }}>
           <Suspense fallback={null}>
@@ -33,12 +33,29 @@ const PortfolioContent = () => {
         </Canvas>
       </div>
 
-      {/* Light mode subtle texture overlay */}
+      {/* Light mode: multi-layered premium gradient mesh */}
       {!isDark && (
         <div
           className="fixed inset-0 z-0 pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse at 30% 20%, rgba(212,165,116,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(180,120,60,0.04) 0%, transparent 50%)",
+            background: [
+              "radial-gradient(ellipse at 15% 10%, rgba(99,102,241,0.12) 0%, transparent 45%)",
+              "radial-gradient(ellipse at 85% 20%, rgba(139,92,246,0.10) 0%, transparent 40%)",
+              "radial-gradient(ellipse at 50% 80%, rgba(34,211,238,0.08) 0%, transparent 45%)",
+              "radial-gradient(ellipse at 80% 85%, rgba(99,102,241,0.07) 0%, transparent 40%)",
+              "radial-gradient(ellipse at 10% 60%, rgba(168,85,247,0.06) 0%, transparent 40%)",
+            ].join(", "),
+          }}
+        />
+      )}
+
+      {/* Light mode: subtle dot grid pattern for depth */}
+      {!isDark && (
+        <div
+          className="fixed inset-0 z-0 pointer-events-none opacity-[0.35]"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(99,102,241,0.25) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
           }}
         />
       )}

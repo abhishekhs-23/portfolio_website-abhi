@@ -49,7 +49,7 @@ export const useAbhiAI = (setAiState: (state: AIState) => void) => {
             window.open('https://github.com/abhishekhs-23', '_blank'); // Adjust URL as needed
             break;
           case 'OPEN_LINKEDIN':
-            window.open('https://www.linkedin.com/in/er-abhishek-h-s-9173a541b/', '_blank'); // Adjust URL as needed
+            window.open('https://www.linkedin.com/in/abhishek-h-s-9173a541b/', '_blank'); // Adjust URL as needed
             break;
           case 'DOWNLOAD_RESUME':
             window.open('/abhishek-hs.pdf', '_blank');
